@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="602.0" prefWidth="893.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="gui.AvisController">
+    <stylesheets>
+        <URL value="@avis.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="aauteur" layoutX="134.0" layoutY="112.0" text="auteur" />
+      <ComboBox fx:id="anote" layoutX="371.0" layoutY="112.0" prefHeight="26.0" prefWidth="150.0" promptText="note" />
+      <TextField fx:id="acontenu" layoutX="612.0" layoutY="78.0" prefHeight="74.0" prefWidth="183.0" text="contenu" />
+      <TableView fx:id="atable" layoutX="126.0" layoutY="233.0" prefHeight="291.0" prefWidth="654.0">
+        <columns>
+          <TableColumn fx:id="com_auteur" prefWidth="216.80001068115234" text="auteur" />
+          <TableColumn fx:id="col_note" minWidth="0.0" prefWidth="224.00003051757812" text="note" />
+            <TableColumn fx:id="col_contenu" prefWidth="211.19998779296873" text="contenu" />
+        </columns>
+      </TableView>
+      <Button fx:id="abtnajouter" layoutX="209.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleAjouterButtonAction" prefHeight="26.0" prefWidth="70.0" text="ajouter" />
+      <Button fx:id="abtnsupprimer" layoutX="620.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleSupprimerButtonAction" prefHeight="26.0" prefWidth="80.0" text="supprimer" />
+      <Button fx:id="abtnmodifier" layoutX="401.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleModifierButtonAction" prefHeight="26.0" prefWidth="80.0" text="modifier" />
+      <Button layoutX="800.0" layoutY="21.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Logout" />
+   </children>
+</AnchorPane>
