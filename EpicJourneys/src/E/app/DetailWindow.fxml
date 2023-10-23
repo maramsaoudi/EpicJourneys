@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="E.app.DetailWindowController">
+   <children>
+      <Label fx:id="titreC" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="30.0" prefWidth="598.0" text="welcome to klibia" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="typeG" layoutX="326.0" layoutY="83.0" prefHeight="18.0" prefWidth="103.0" text="nature" />
+      <Label layoutX="220.0" layoutY="109.0" prefHeight="18.0" prefWidth="77.0" text="plus detail :" />
+      <Label fx:id="guideD" layoutX="328.0" layoutY="56.0" prefHeight="18.0" prefWidth="50.0" text="guide" />
+      <Label layoutX="220.0" layoutY="84.0" text="voyage de type :" />
+      <Label layoutX="221.0" layoutY="56.0" text="votre guide est :" />
+      <TextArea fx:id="decriptionE" layoutX="378.0" layoutY="44.0" prefHeight="130.0" prefWidth="370.0" text="&#10;" />
+      <ImageView fx:id="imageD" fitHeight="150.0" fitWidth="208.0" layoutX="6.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@nature1.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableviewC" layoutX="298.0" layoutY="200.0" prefHeight="258.0" prefWidth="455.0">
+        <columns>
+          <TableColumn fx:id="tvC" prefWidth="98.4000244140625" text="id_commentaire" />
+          <TableColumn fx:id="tvCC" prefWidth="356.0" text="les commentaires" />
+        </columns>
+      </TableView>
+      <TextField fx:id="IDC" layoutX="154.0" layoutY="393.0" prefHeight="26.0" prefWidth="50.0" />
+      <TextArea fx:id="contenuC" layoutX="7.0" layoutY="226.0" prefHeight="130.0" prefWidth="282.0" />
+      <Button fx:id="ajouterC" layoutX="232.0" layoutY="364.0" mnemonicParsing="false" text="ajouter" />
+      <Button fx:id="modifierC" layoutX="18.0" layoutY="426.0" mnemonicParsing="false" text="modifier" />
+      <Button fx:id="suprimerC" layoutX="106.0" layoutY="426.0" mnemonicParsing="false" text="suprimer" />
+      <Button fx:id="translateC" layoutX="201.0" layoutY="426.0" mnemonicParsing="false" text="translate" />
+      <Label layoutX="25.0" layoutY="205.0" prefHeight="18.0" prefWidth="136.0" text="tu veut dit qlq chose :" />
+      <Label layoutX="18.0" layoutY="397.0" prefHeight="18.0" prefWidth="142.0" text="donner l id  a traiter :" />
+      <Label fx:id="translateC" layoutX="-2.0" layoutY="468.0" prefHeight="18.0" prefWidth="678.0" />
+   </children>
+</AnchorPane>
