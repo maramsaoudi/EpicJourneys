@@ -1,0 +1,18 @@
+.button {
+    -fx-background-color: #282828;
+    -fx-text-fill: white; /* Text color for dark mode */
+    -fx-font-size: 14px; /* Adjust the font size as needed */
+    -fx-background-radius: 0em; /* Remove background radius */
+    -fx-border-color: #7e7b7b; /* Border color for contrast */
+}
+
+.button:hover {
+    -fx-background-color: #7e7b7b; /* Darker color on hover */
+    -fx-border-color: #282828; /* Invert the border color on hover */
+}
+.button:pressed {
+    -fx-background-color: #4c4a4a; /* Darker color when clicked */
+    -fx-border-color: #7e7b7b; /* Border color for contrast */
+    -fx-background-radius: 0em; /* Remove background radius when clicked */
+    -fx-border-width: 2px; /* Add a border when clicked */
+}
