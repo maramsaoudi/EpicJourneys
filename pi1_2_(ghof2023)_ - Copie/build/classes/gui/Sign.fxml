@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SignController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="430.0" style="-fx-background-color: #6495ED;">
+         <children>
+            <ImageView fx:id="imgbig" fitHeight="600.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/epic2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <TextField fx:id="femail" layoutX="501.0" layoutY="201.0" prefHeight="42.0" prefWidth="351.0" promptText="Email" />
+      <PasswordField fx:id="fpassword" layoutX="501.0" layoutY="266.0" prefHeight="42.0" prefWidth="351.0" promptText="Password" />
+      <ImageView fx:id="imgsmall" fitHeight="80.0" fitWidth="88.0" layoutX="433.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/epic1.png" />
+         </image>
+      </ImageView>
+      <Label graphicTextGap="5.0" layoutX="448.0" layoutY="81.0" prefHeight="18.0" prefWidth="81.0" text="Welcome Back," textFill="#545454" />
+      <Label fx:id="fForgotpassword" layoutX="755.0" layoutY="328.0" text="Forgot password ?" />
+      <Label layoutX="489.0" layoutY="99.0" prefHeight="18.0" prefWidth="50.0" text="Sign In " textOverrun="CLIP" />
+      <Button fx:id="fbtnlogin" layoutX="555.0" layoutY="405.0" mnemonicParsing="false" onAction="#login" prefHeight="42.0" prefWidth="242.0" text="Login" textFill="#0f8fdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label fx:id="fsignup" layoutX="755.0" layoutY="455.0" prefHeight="18.0" prefWidth="62.0" text="Signup" textFill="#1b8dcf" />
+      <Label layoutX="676.0" layoutY="455.0" text="New user ?" />
+      <ImageView fitHeight="42.0" fitWidth="32.0" layoutX="457.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../5582931.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="457.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/Design%20sans%20titre%20(1).png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

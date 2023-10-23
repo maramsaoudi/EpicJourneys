@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegistrationController">
+   <children>
+      <ImageView fitHeight="59.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/Design%20sans%20titre%20(2).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="234.0" layoutY="7.0" prefHeight="18.0" prefWidth="143.0" text="Registration Form">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="280.0" layoutY="33.0" text="Fill the form for registration">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+     <TextField fx:id="pnom" layoutX="353.0" layoutY="74.0" prefHeight="26.0" prefWidth="303.0" promptText="Nom" />
+<TextField fx:id="pprenom" layoutX="353.0" layoutY="124.0" prefHeight="26.0" prefWidth="303.0" promptText="Prénom" />
+<TextField fx:id="pemail" layoutX="353.0" layoutY="177.0" prefHeight="26.0" prefWidth="303.0" promptText="Email" />
+<PasswordField fx:id="pmotdepasse" layoutX="353.0" layoutY="234.0" prefHeight="26.0" prefWidth="303.0" promptText="Mot de passe" />
+<PasswordField fx:id="pconfirmmotdepasse" layoutX="353.0" layoutY="288.0" prefHeight="26.0" prefWidth="303.0" promptText="Confirmer le mot de passe" />
+<TextField fx:id="pnumerotelephone" layoutX="353.0" layoutY="340.0" prefHeight="26.0" prefWidth="303.0" promptText="Numéro de téléphone" />
+<DatePicker fx:id="pdatenaissance" layoutX="353.0" layoutY="393.0" prefHeight="26.0" prefWidth="303.0" promptText="Date de naissance" />
+<ComboBox fx:id="pgenre" layoutX="353.0" layoutY="453.0" prefHeight="26.0" prefWidth="303.0" promptText="Genre" />
+<RadioButton fx:id="pclient" layoutX="367.0" layoutY="524.0" mnemonicParsing="false" text="Client" />
+<RadioButton fx:id="pguide" layoutX="546.0" layoutY="524.0" mnemonicParsing="false" text="Guide" />
+
+      <Button fx:id="pbtnRegister" layoutX="438.0" layoutY="555.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="34.0" prefWidth="98.0" text="Register" textFill="#549dd4">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="pErrorMessage" layoutX="340.0" layoutY="366.0" prefHeight="18.0" prefWidth="136.0" textFill="#d10000" />
+      <Label fx:id="btnBack" layoutX="34.0" layoutY="24.0" text="Back" />
+      <Button fx:id="excel" layoutX="600.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnexcel" text="excel" />
+      
+   </children>
+</AnchorPane>
