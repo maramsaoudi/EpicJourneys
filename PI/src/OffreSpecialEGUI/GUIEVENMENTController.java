@@ -79,24 +79,27 @@ private TableView<OffreSpecialEvenment> fxTableOffreSpecial;
     private int index; 
     private int getSelectedOffreSpecialEvenment() {
     int idOffreSpecialEvenment = -1; 
-    index = fxTableOffreSpecial.getSelectionModel().getSelectedIndex();
-    if (index >= 0) {
-        OffreSpecialEvenment selectedOffre = fxTableOffreSpecial.getItems().get(index);
+    idOffreSpecialEvenment = fxTableOffreSpecial.getSelectionModel().getSelectedIndex();
+    if (idOffreSpecialEvenment >= 0) {
+        OffreSpecialEvenment selectedOffre = fxTableOffreSpecial.getItems().get(idOffreSpecialEvenment);
         idOffreSpecialEvenment = selectedOffre.getIdEvenement();
     } else {
-        // Handle the case when nothing is selected
-        // You can set a label or show a message to prompt the user to select an item.
         fxlabelfhdslf.setText("Please select an Offre Special");
+        
+        return idOffreSpecialEvenment;
     }
     return idOffreSpecialEvenment;
-}
+} 
 
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
-        ObservableList<OffreSpecialEvenment> listOffres;
+        ObservableList<OffreSpecialEvenment> listOffres; 
+        int idEventSpecial = getSelectedOffreSpecialEvenment();
+        System.out.println(idEventSpecial);
+        
 
 fxTitreOffreSpecialE.setCellValueFactory(new PropertyValueFactory<OffreSpecialEvenment, String>("titre"));
 fxDescriptionOfrreSpecialE.setCellValueFactory(new PropertyValueFactory<OffreSpecialEvenment, String>("description"));

@@ -114,7 +114,9 @@ private void AjouterOffreSpecialE(ActionEvent event) {
         OffreSpecialEvenment evenment1 = new OffreSpecialEvenment(cattegorieOffre, dateDepartOffre, descriptionOffre, destinationOffre, guideIdOffre, imagePathOffre, prixOffre, titreOffre, niveauOffre);
         
             
-        cnx2.ajouterOffreSpecialEvenment(evenment1); }
+        cnx2.ajouterOffreSpecialEvenment(evenment1); 
+        retourToSceneInitiale(event);
+        }
         
     } catch (NumberFormatException e) {
         System.err.println("Invalid number format in prix or guide ID.");
