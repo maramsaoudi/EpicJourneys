@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="861.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CarteFideliteUser.GUI.UICarteController">
+    <stylesheets>
+        <URL value="@uicarte.css" />
+    </stylesheets>
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="861.0">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="222.0" style="-fx-background-color: #282828;" BorderPane.alignment="CENTER">
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@User.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Hello " textFill="#ff5733">
+                     <font>
+                        <Font size="28.0" />
+                     </font></Label>
+                  <Label layoutX="87.0" layoutY="145.0" textFill="#ff5733">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="42.0" prefWidth="217.0" stylesheets="@../../CarteFideliteAdmin/GUI/style.css" text="We're happy to have you " textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
+               </children></VBox>
+         </center>
+         <left>
+            <VBox prefHeight="600.0" prefWidth="148.0" style="-fx-background-color: #282828;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="152.0" text="   Produits">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@download.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="151.0" text="    Panier">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@ajouter-au-panier-face-avant_187299-39171.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="148.0" text="  Evenements">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pngtree-party-event-schedule-icon-png-image_2492092.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="155.0" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <Pane prefHeight="600.0" prefWidth="487.0" style="-fx-background-color: #282828;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="fxNbrPtsFidelite" layoutX="98.0" layoutY="193.0" prefHeight="51.0" prefWidth="357.0" stylesheets="@../../CarteFideliteAdmin/GUI/style.css" text="1200" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="129.0" layoutY="259.0" prefHeight="49.0" prefWidth="123.0" stylesheets="@../../CarteFideliteAdmin/GUI/style.css" text="Equivalent a">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fxMoney" layoutX="133.0" layoutY="314.0" prefHeight="53.0" prefWidth="136.0" text="12 TND" textFill="#94b231">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="130.0" fitWidth="121.0" layoutX="360.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@6963703.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="fxBadge" fitHeight="150.0" fitWidth="200.0" layoutX="126.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gold.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="fxOptional" layoutX="111.0" layoutY="387.0" prefHeight="43.0" prefWidth="158.0" stylesheets="@../../CarteFideliteAdmin/GUI/style.css" text="Or you can ">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="fxUpgradeCarte" layoutX="130.0" layoutY="441.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="120.0" text="Upgrade" />
+               </children></Pane>
+         </right>
+      </BorderPane>
+      <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="151.0" stylesheets="@../../../style/label.css" text="   all items" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="82.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="SW_RESIZE" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
