@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/AdminPage.fxml</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/VotreCodeController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/services/Pdfgenerator.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/MdpOubliéUserController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/RegistrationController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/services/EMailSender.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/SignController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/ClientPage.fxml</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/entities/UserRole.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/AjoutAvis.fxml</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/AjoutAvisController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/ResetPasswordController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/AdminPageController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/services/UserCRUD.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/services/IUserCRUD.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/AvisController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/TableViewController.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/HomeAvis.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/Home.java</file>
+            <file>file:/C:/Users/ghofr/OneDrive/Documents/NetBeansProjects/pi1_2_(ghof2023)_/src/gui/ClientPageController.java</file>
+        </group>
+    </open-files>
+</project-private>
