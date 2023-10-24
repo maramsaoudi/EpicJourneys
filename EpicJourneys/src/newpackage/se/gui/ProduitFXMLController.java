@@ -15,6 +15,7 @@ import java.io.*;
 import java.util.Base64;
 import java.util.Optional;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,7 +78,7 @@ public class ProduitFXMLController implements Initializable {
             Amira_imageView.setImage(image);
         }
     }
-    String imagepathproduit=null;
+    //String imagepathproduit=null;
 
     @FXML
     private void Amira_save_BT(ActionEvent event) {
@@ -102,17 +103,17 @@ public class ProduitFXMLController implements Initializable {
                         fis.close();
 
                         String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
-                        imagepathproduit=selectedImageFile.getAbsolutePath();
+                        //imagepathproduit=selectedImageFile.getAbsolutePath();
 
                         Produit produit = new Produit();
                         produit.setNom(nom);
                         produit.setPrixUnitaire(prixUnitaire);
                         produit.setStock(stock);
-                        produit.setImage(imagepathproduit);
-                        produitCRUD.ajouterEntities(produit);
+                        produit.setImage(imageBase64);
+                        produitCRUD.ajouterProduit(produit);
 
-                        ObservableList<Produit> produits = produitCRUD.listeDesEntities1();
-                        Amira_tableView.setItems(produits);
+                        List<Produit> produits = produitCRUD.listeDesProduits();
+                        Amira_tableView.setItems((ObservableList<Produit>) produits);
 
                         clearFields();
                     } catch (IOException ex) {
@@ -138,7 +139,7 @@ public class ProduitFXMLController implements Initializable {
             Optional<ButtonType> result = confirmation.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                produitCRUD.supprimerEntities(selectedProduit);
+                produitCRUD.supprimerProduit(selectedProduit);
                 loadProduit();
             }
         } else {
@@ -168,7 +169,7 @@ public class ProduitFXMLController implements Initializable {
                     selectedProduit.setPrixUnitaire(newPrixUnitaire);
                     selectedProduit.setStock(newStock);
 
-                    produitCRUD.modifierEntities(selectedProduit);
+                    produitCRUD.modifierProduit(selectedProduit);
 
                     loadProduit();
                     clearFields();
@@ -209,7 +210,7 @@ public class ProduitFXMLController implements Initializable {
     }
 
     private void loadProduit() {
-        ObservableList<Produit> produits = FXCollections.observableArrayList(produitCRUD.listeDesEntities1());
+        ObservableList<Produit> produits = FXCollections.observableArrayList(produitCRUD.listeDesProduits());
         Amira_tableView.setItems(produits);
     }
 

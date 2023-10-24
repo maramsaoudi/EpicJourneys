@@ -6,16 +6,15 @@
 package epicjourneys.se.services;
 
 import epicjourneys.se.entities.Commande;
+import epicjourneys.se.utils.MyConnection;
 import epicjourneys.se.interfraces.InterfaceCRUD;
-import epicjourneys.se.utils.MyConnection; 
+
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandeCRUD implements InterfaceCRUD<Commande> {
 
-    /* public CommandeCRUD(Connection cnx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
     private Connection connection;
 
     // Constructeur sans arguments
@@ -23,78 +22,75 @@ public class CommandeCRUD implements InterfaceCRUD<Commande> {
         connection = MyConnection.getInstance().getCnx();
     }
 
-    public CommandeCRUD(Connection cnx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     @Override
-    public void ajouterEntities(Commande commande) {
-        Connection connection = MyConnection.getInstance().getCnx();
-        try {
-            String requete = "INSERT INTO Commande (nomp, client) VALUES (?, ?)";
-            PreparedStatement pst = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, commande.getNomp());
-            pst.setString(2, commande.getClient());
-            pst.executeUpdate();
+public void ajouterEntities(Commande commande) {
+    try {
+        String requete = "INSERT INTO Commande (userId, productId, pathFacture) VALUES (?, ?, ?)";
+        PreparedStatement pst = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+        pst.setInt(1, commande.getUserId());
+        pst.setInt(2, commande.getProductId());
+        pst.setString(3, commande.getPathFacture());
+        pst.executeUpdate();
 
-            ResultSet generatedKeys = pst.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                commande.setId(generatedKeys.getInt(1));
-            }
-
-            System.out.println("Commande ajoutée avec succès !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        ResultSet generatedKeys = pst.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            commande.setId(generatedKeys.getInt(1));
         }
+
+        System.out.println("Commande ajoutée avec succès !");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+
+@Override
+public List<Commande> listeDesEntities() {
+    List<Commande> commandes = new ArrayList<>();
+    try {
+        String requete = "SELECT id, userId, productId, pathFacture FROM Commande";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(requete);
+        while (rs.next()) {
+            Commande commande = new Commande();
+            commande.setId(rs.getInt("id"));
+            commande.setUserId(rs.getInt("userId"));
+            commande.setProductId(rs.getInt("productId"));
+            commande.setPathFacture(rs.getString("pathFacture"));
+            commandes.add(commande);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return commandes;
+}
+
+@Override
+public void modifierEntities(Commande commande) {
+    try {
+        String requete = "UPDATE Commande SET userId = ?, productId = ?, pathFacture = ? WHERE id = ?";
+        PreparedStatement pst = connection.prepareStatement(requete);
+        pst.setInt(1, commande.getUserId());
+        pst.setInt(2, commande.getProductId());
+        pst.setString(3, commande.getPathFacture());
+        pst.setInt(4, commande.getId());
+        pst.executeUpdate();
+        System.out.println("Commande modifiée avec succès !");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+
+@Override
+public void supprimerEntities(Commande commande) {
+    try {
+        String requete = "DELETE FROM Commande WHERE id = ?";
+        PreparedStatement pst = connection.prepareStatement(requete);
+        pst.setInt(1, commande.getId());
+        pst.executeUpdate();
+        System.out.println("Commande supprimée avec succès !");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
 
-    @Override
-    public List<Commande> listeDesEntities() {
-        List<Commande> commandes = new ArrayList<>();
-        Connection connection = MyConnection.getInstance().getCnx();
-        try {
-            String requete = "SELECT id, nomp, client FROM Commande";
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(requete);
-            while (rs.next()) {
-                Commande commande = new Commande();
-                commande.setId(rs.getInt("id"));
-                commande.setNomp(rs.getString("nomp"));
-                commande.setClient(rs.getString("client"));
-                commandes.add(commande);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return commandes;
-    }
-
-    @Override
-    public void modifierEntities(Commande commande) {
-        Connection connection = MyConnection.getInstance().getCnx();
-        try {
-            String requete = "UPDATE Commande SET nomp = ?, client = ? WHERE id = ?";
-            PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setString(1, commande.getNomp());
-            pst.setString(2, commande.getClient());
-            pst.setInt(3, commande.getId());
-            pst.executeUpdate();
-            System.out.println("Commande modifiée avec succès !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @Override
-    public void supprimerEntities(Commande commande) {
-        Connection connection = MyConnection.getInstance().getCnx();
-        try {
-            String requete = "DELETE FROM Commande WHERE id = ?";
-            PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(1, commande.getId());
-            pst.executeUpdate();
-            System.out.println("Commande supprimée avec succès !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+}
 }

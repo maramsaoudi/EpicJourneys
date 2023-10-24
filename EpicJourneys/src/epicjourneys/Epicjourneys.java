@@ -5,6 +5,11 @@
  */
 package epicjourneys;
 
+import epicjourneys.se.entities.User;
+import epicjourneys.se.services.UserCRUD;
+import java.util.List;
+
+/*
 import epicjourneys.se.entities.Commande;
 import epicjourneys.se.entities.Panier;
 import epicjourneys.se.entities.Produit;
@@ -48,84 +53,42 @@ public class Epicjourneys {
         
 
 
-        CommandeCRUD commandeCRUD = new CommandeCRUD();
-
-        // Ajouter une commande
-        Commande nouvelleCommande = new Commande("valise rouge", "client ali");
-        commandeCRUD.ajouterEntities(nouvelleCommande);
-
-        // Afficher la liste des commandes
-        System.out.println("Liste des commandes :");
-        for (Commande commande : commandeCRUD.listeDesEntities()) {
-            System.out.println(commande);
-        }
-
-        // Modifier une commande (assurez-vous d'avoir un ID valide)
-        Commande commandeAModifier = commandeCRUD.listeDesEntities().get(0); // Remplacez par un ID valide
-        commandeAModifier.setNomp("Valise rose");
-        commandeAModifier.setClient("Client2");
-        commandeCRUD.modifierEntities(commandeAModifier);
-
-        // Afficher à nouveau la liste des commandes
-        System.out.println("Liste des commandes après modification :");
-        for (Commande commande : commandeCRUD.listeDesEntities()) {
-            System.out.println(commande);
-        }
-
-        // Supprimer une commande (assurez-vous d'avoir un ID valide)
-        //Commande commandeASupprimer = commandeCRUD.listeDesEntities().get(4); // Remplacez par un ID valide
-        //commandeCRUD.supprimerEntities(commandeASupprimer);
-
-        // Afficher la liste des commandes après suppression
-        System.out.println("Liste des commandes après suppression :");
-        for (Commande commande : commandeCRUD.listeDesEntities()) {
-            System.out.println(commande);
-        }
-        //////////////
-        /*
-        PanierCRUD panierCRUD = new PanierCRUD();
-         // Ajouter un panier
-        Panier nouveauPanier = new Panier("Nom du produit", "Nom du client", "Date de commande", "Adresse de livraison", "Frais de livraison");
-        panierCRUD.ajouterEntities(nouveauPanier);
-
-        // Afficher la liste des paniers
-        System.out.println("Liste des paniers :");
-        for (Panier panier : panierCRUD.listeDesEntities()) {
-            System.out.println(panier);
-        }
-
-        // Modifier un panier (assurez-vous d'avoir un ID valide)
-        Panier panierAModifier = panierCRUD.listeDesEntities().get(0); // Remplacez par un ID valide
-        panierAModifier.setNomp("Nouveau nom du produit");
-        panierAModifier.setClient("Nouveau nom du client");
-        panierCRUD.modifierEntities(panierAModifier);
-
-        // Afficher à nouveau la liste des paniers
-        System.out.println("Liste des paniers après modification :");
-        for (Panier panier : panierCRUD.listeDesEntities()) {
-            System.out.println(panier);
-        }
-
-        // Supprimer un panier (assurez-vous d'avoir un ID valide)
-        Panier panierASupprimer = panierCRUD.listeDesEntities().get(0); // Remplacez par un ID valide
-        panierCRUD.supprimerEntities(panierASupprimer);
-
-        // Afficher la liste des paniers après suppression
-        System.out.println("Liste des paniers après suppression :");
-        for (Panier panier : panierCRUD.listeDesEntities()) {
-            System.out.println(panier);
-        }*/
+       
         
     }
+}*/
+
+      
+public class Epicjourneys {
+
+    public static void main(String[] args) {
+        UserCRUD userCRUD = new UserCRUD();
+
+        // Test de l'ajout d'un utilisateur
+        User newUser = new User("Ayari", "Amira", "amira.ayari@esprit.tn", "password123", "123456789", "2000-08-30", "Femme", User.UserRole.CLIENT);
+        userCRUD.ajouterUser(newUser);
+        System.out.println("Utilisateur ajouté avec succès : " + newUser.getNom());
+
+        // Test de la liste des utilisateurs
+        List<User> utilisateurs = userCRUD.listeDesUtilisateurs();
+        for (User utilisateur : utilisateurs) {
+            System.out.println(utilisateur);
+        }
+
+        // Test de la modification d'un utilisateur existant
+        if (!utilisateurs.isEmpty()) {
+            User utilisateurAModifier = utilisateurs.get(0);
+            utilisateurAModifier.setNom("Nouveau Nom");
+            utilisateurAModifier.setPrenom("Nouveau Prénom");
+            userCRUD.modifierUser(utilisateurAModifier);
+            System.out.println("Utilisateur modifié avec succès : " + utilisateurAModifier.getNom());
+        }
+
+        // Test de la suppression d'un utilisateur existant
+        /*if (utilisateurs.size() > 1) {
+            User utilisateurASupprimer = utilisateurs.get(1);
+            userCRUD.supprimerUser(utilisateurASupprimer);
+            System.out.println("Utilisateur supprimé avec succès : " + utilisateurASupprimer.getNom());
+        }*/
+    }
 }
-
-        
-           
-        
-        
-        
-    
-    
-    
-    
-
