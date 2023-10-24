@@ -76,30 +76,31 @@ String requete2 = "INSERT INTO OffreSpecialEvenment (titre, description, prix, d
     
     
     
-        public void modifierOffreSpecialEvenment (OffreSpecialEvenment e){
+        public void modifierOffreSpecialEvenment (OffreSpecialEvenment e, int id ){
         try {
-                   String requete2 = "UPDATE offreSpecialEvenment SET titre=?,description=?, date_depart=?,prix=?, catégorie=?, guide_id=?, destination=?, image=?, niveau=? where IdOffreSpecialEvenment=?";
+                   String requete2 = "UPDATE offreSpecialEvenment SET titre=?,description=?,prix=?, date_depart=?, catégorie=?, guide_id=?, destination=?, image=?, niveau=? where IdOffreSpecialEvenment=?";
             
-            PreparedStatement pst = cnx2.prepareStatement(requete2);
+       PreparedStatement pst = cnx2.prepareStatement(requete2);
             pst.setString(1, e.getTitre());
             pst.setString(2, e.getDescription());
-            pst.setDate(3,e.getDate_depart());
-      
-            pst.setFloat(5, e.getPrix());
-            pst.setString(6, e.getTypeEvenement());
-            pst.setInt(7, e.getGuide_id());
-            pst.setString(8, e.getDestination());
-            pst.setString(9, e.getImage());
-            pst.setInt(10, e.getIdEvenement()); 
-            pst.setString(11, e.getNiveau().toString());
+            pst.setFloat(3,e.getPrix());
+            pst.setDate(4, e.getDate_depart());
+            pst.setString(5, e.getCatégorie());
+            pst.setInt(6, e.getGuide_id());
+            pst.setString(7, e.getDestination());
+            pst.setString(8, e.getImage()); 
+            pst.setString(9,e.getNiveau().toString());            
+        pst.setInt(10, id);
 
-            pst.executeUpdate();
-            System.out.println("OffreSpecial modifié ! ");
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+        pst.executeUpdate();
+        System.out.println("OffreSpecial modifié !");
+    } catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+
         }
    
-    }
+
     
     
     
@@ -248,10 +249,10 @@ public static OffreSpecialEvenment getEventById(int eventId) {
 
     return event;
 }
-
+}
 
 
     
-}
+
 
 

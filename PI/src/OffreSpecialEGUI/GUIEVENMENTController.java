@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.collections.ObservableList;
@@ -26,8 +28,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.FloatStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import pi.CarteFidelite;
 
 
@@ -106,37 +112,7 @@ private  ObservableList<OffreSpecialEvenment> listOffres;
     return idCarte;}  
 */
  
-@FXML
-private void navigateToModifier(ActionEvent event) {
-  try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifferOffre.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        ModifferOffreController mo = loader.getController();
 
-        int idOffreSpecialEvenment = getOffreSpecialClick();
-        if (idOffreSpecialEvenment != -1) {
-            OffreSpecialEvenment selectedEvent = OffreSpecialEvenementCrud.getEventById(idOffreSpecialEvenment);
-
-            /*mo.moimageOffre.setImage(new Image(selectedEvent.getImage()));
-            mo.mofxTitreOffre.setText(selectedEvent.getTitre());
-            mo.mofxPrixOffre.setText(String.valueOf(selectedEvent.getPrix()));
-            mo.mofxGuideIdOffre.setText(String.valueOf(selectedEvent.getGuide_id()));
-            mo.mofxDestinationOffre.setText(selectedEvent.getDestination());
-            mo.mofxNiveauOffre.setValue(selectedEvent.getNiveau().toString());
-            mo.mofxDateDepartOffre.setValue(selectedEvent.getDate_depart().toLocalDate());
-            mo.mofxDescriptionOFfre.setText(selectedEvent.getDescription());
-            mo.mofxCattegorieOffre.setText(selectedEvent.getCatégorie());*/
-        } else {
-            fxlabelfhdslf.setText("Please Select a Card");
-        }
-
-        Stage stage = (Stage) fxNavModifier.getScene().getWindow();
-        stage.setScene(scene);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-} 
 
 @FXML
 public void supprimerOffreSpecialEvenment() {
@@ -180,10 +156,123 @@ private int getOffreSpecialClick() {
 
   System.out.println("Debugging : " + idOffreSpecialEvenment);
 
-    return idOffreSpecialEvenment;} 
+    return idOffreSpecialEvenment;}  
+
+
+    private void setupEditableColumnString(TableColumn<OffreSpecialEvenment, String> column, String field) {
+    column.setCellFactory(TextFieldTableCell.forTableColumn());
+    column.setOnEditCommit(event -> {
+        int x = getOffreSpecialClick();
+        OffreSpecialEvenment evenement = OffreSpecialEvenementCrud.getEventById(x);
+
+        String newValue = event.getNewValue();
+        switch (field) {
+            case "titre":
+                evenement.setTitre(newValue);
+                break;
+            case "description":
+                evenement.setTypeEvenement(newValue);
+                break;
+            case "destination":
+                evenement.setDestination(newValue);
+                break;
+            case "catégorie":
+                evenement.setDescription(newValue);
+                break;
+            case "image":
+                evenement.setImage(newValue);
+                break; 
+                
+        }
+        OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
+        modifier.modifierOffreSpecialEvenment(evenement,x);
+    });
+}
+
+
+ private void setupEditableColumnDate(TableColumn<OffreSpecialEvenment, Date> column) {
+    column.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Date>() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        @Override
+        public String toString(Date date) {
+            return (date != null) ? dateFormat.format(date) : "";
+        }
+
+        @Override
+        public Date fromString(String string) {
+            try {
+                return (string != null && !string.isEmpty()) ? new Date(dateFormat.parse(string).getTime()) : null;
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+    }));
+    int x=getOffreSpecialClick();
+
+    column.setOnEditCommit(event -> {
+        OffreSpecialEvenment evenement = event.getRowValue();
+        String dateString = event.getNewValue().toString(); // Convert java.util.Date to String
+        Date newDate = Date.valueOf(dateString); // Convert String back to java.util.Date
+        evenement.setDate_depart(newDate);
+        OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
+        modifier.modifierOffreSpecialEvenment(evenement,x);
+    });
+}
+
+  
+ 
+
+
+
+
+    private void setupEditableColumnInteger(TableColumn<OffreSpecialEvenment, Integer> column, String field) {
+        column.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        column.setOnEditCommit(event -> {
+            OffreSpecialEvenment evenment = event.getRowValue();
+            int x=getOffreSpecialClick();
+            int newValue = event.getNewValue();
+            if (field.equals("guide_id")) { 
+                
+                evenment.setGuide_id(newValue);
+            }
+            OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
+            modifier.modifierOffreSpecialEvenment(evenment,x);
+        });
+    }
+
+    private void setupEditableColumnFloat(TableColumn<OffreSpecialEvenment, Float> column) {
+        column.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+        column.setOnEditCommit(event -> {
+            int x=getOffreSpecialClick();
+            OffreSpecialEvenment evenement = OffreSpecialEvenementCrud.getEventById(x);
+            evenement.setPrix(event.getNewValue());
+            OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
+            modifier.modifierOffreSpecialEvenment(evenement,x);
+        });
+    }
+
 
 @Override
-    public void initialize(URL url, ResourceBundle rb) { 
+    public void initialize(URL url, ResourceBundle rb) {  
+        setupEditableColumnString(fxTitreOffreSpecialE, "titre");
+        setupEditableColumnString(fxCatOffreE,"catégorie");
+
+        //setupEditableColumnDate(fxDateDepartOffre); 
+       //    c_date.setCellFactory(TextFieldTableCell.forTableColumn(dateConverter)); 
+       TableColumn<OffreSpecialEvenment, Integer> guideIdColumn = new TableColumn<>("Guide ID"); 
+       setupEditableColumnInteger(fxGuideIdE, "guide_id");
+
+       
+
+
+        setupEditableColumnString(fxDestinationOffreE, "destination"); 
+        setupEditableColumnString(fxImageOffreE, "image");  
+         //setupEditableColumnString(fxNiveauE, "niveau");
+
+
+    
+        fxTableOffreSpecial.setEditable(true);
 
        
 
@@ -235,7 +324,12 @@ fxTableOffreSpecial.setItems(listOffres);
 
     SortedList<OffreSpecialEvenment> sortedData = new SortedList<>(filterData);
     sortedData.comparatorProperty().bind(fxTableOffreSpecial.comparatorProperty());
+
+
     ;*/
+   
+   
+   
 }
 }
 

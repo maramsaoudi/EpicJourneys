@@ -80,14 +80,24 @@ message.setText("Cher " + nomDuClient + ",\n\n"
   + "Nous attendons avec impatience de passer une soirée inoubliable en votre compagnie. Votre présence serait une grande joie pour nous.\n\n"
   + "Encore une fois, merci de votre fidélité envers [Nom de l'Entreprise]. Nous espérons vous voir à notre événement spécial.\n\n"
   + "Avec nos meilleures salutations,\n"
-  + "[Votre Nom]\n"
-  + "[Votre Titre]\n"
-  + "[Nom de l'Entreprise]\n"
-  + "[Coordonnées de Contact]");
+  + "[Achraf]\n"
+  + "[Respensable voyage]\n"
+  + "[EpicJourneys]\n"
+  + "[+216 000 000 000]");
 return message;
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }
         return null;
-    }
+    }  
+        public static void main(String[] args) { 
+            
+        try {
+            sendMail("achraf.boubaker@esprit.tn");
+        } catch (Exception ex) { 
+            System.err.println("failed to send Mail : " + ex.getMessage());
+        }
+        }
+
+   
 }
