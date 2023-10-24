@@ -12,8 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -26,6 +24,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import epicjourneys.se.interfraces.InterfaceCRUD;
 import javafx.collections.FXCollections;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class StoreController implements Initializable {
 
@@ -60,11 +60,11 @@ public class StoreController implements Initializable {
 
         // Chargez les données de la base de données dans le TableView
         ProduitCRUD produitCRUD = new ProduitCRUD();
-        
-        ObservableList<Produit> produits = FXCollections.observableArrayList(produitCRUD.listeDesProduits());
-            
 
-        Amira_tableView_store.setItems(produits);
+        ObservableList<Produit> produits = FXCollections.observableArrayList(produitCRUD.listeDesProduits());
+
+        Amira_tableView_store.setItems(produits); 
+        
 
         // Réagissez aux clics de ligne dans le TableView
         Amira_tableView_store.setOnMouseClicked((MouseEvent event) -> {
@@ -74,17 +74,18 @@ public class StoreController implements Initializable {
                 Amira_NomProduit_store.setText(selectedProduit.getNom());
                 Amira_PrixUnitaireProduit_store.setText(String.valueOf(selectedProduit.getPrixUnitaire()));
                 Amira_Stock_store.setText(String.valueOf(selectedProduit.getStock()));
-
+System.out.println("TEST");
                 // Charger et afficher l'image correspondante dans Amira_imageView_store
-                Image image = new Image("file:" + selectedProduit.getImage()); // Assurez-vous que le chemin est correct
-                Amira_imageView_store.setImage(image);
+               // Image image = new Image("file:" + selectedProduit.getImage()); // Assurez-vous que le chemin est correct
+               // Amira_imageView_store.setImage(image);
             }
         });
     }
-
     @FXML
     private void Amira_save_BT(ActionEvent event) {
         Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+            
+
         confirmationAlert.setTitle("Confirmation d'achat");
         confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir acheter ce produit ?");
 
@@ -94,9 +95,10 @@ public class StoreController implements Initializable {
         confirmationAlert.getButtonTypes().setAll(ouiButton, nonButton);
 
         UserCRUD userCRUD = new UserCRUD();
+      
         // Récupérez l'utilisateur actuellement connecté (par exemple, à partir d'une session ou d'un système d'authentification).
         // Remplacez "1" par l'ID de l'utilisateur connecté.
-        User utilisateur = userCRUD.getUserById(1);
+        User utilisateur = userCRUD.getUserById(6);
 
         Optional<ButtonType> result = confirmationAlert.showAndWait();
         if (result.get() == ouiButton && utilisateur != null) {
@@ -109,10 +111,7 @@ public class StoreController implements Initializable {
 
     private void ajouterCommande(User utilisateur, Produit produit) {
         // Créez une instance de la classe Commande avec les détails de la commande.
-        Commande commande = new Commande();
-        commande.setUserId(utilisateur.getId());
-        commande.setProductId(produit.getId());
-        commande.setPathFacture("votre_path_facture");
+        Commande commande = new Commande(utilisateur.getId(), produit.getId(), "votre_path_facture");
 
         // Ajoutez la commande à la table "commande" en utilisant la classe CommandeCRUD.
         CommandeCRUD commandeCRUD = new CommandeCRUD();
@@ -123,17 +122,12 @@ public class StoreController implements Initializable {
     }
 
     @FXML
-    private void rowClicked(MouseEvent event) { 
+    private void rowClicked(MouseEvent event) {
         Produit selectedProduit = Amira_tableView_store.getSelectionModel().getSelectedItem();
 
         if (selectedProduit != null) {
             Amira_NomProduit_store.setText(selectedProduit.getNom());
             Amira_PrixUnitaireProduit_store.setText(String.valueOf(selectedProduit.getPrixUnitaire()));
-            Amira_Stock_store.setText(String.valueOf(selectedProduit.getStock()));
-
-            // Charger et afficher l'image correspondante dans Amira_imageView_store
-            Image image = new Image("file:" + selectedProduit.getImage());
-            Amira_imageView_store.setImage(image);
+           
         }
-    }
-}
+    }}

@@ -130,9 +130,33 @@ public class UserCRUD {
         }
     }
 
-    public User getUserById(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public User getUserById(int userId) {
+    User user = null;
+    // Utilisez une requête SQL pour récupérer l'utilisateur à partir de la table User
+    String sql = "SELECT * FROM User WHERE id = ?";
+
+    try {
+           Connection connection = MyConnection.getInstance().getCnx();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            // Construisez un objet User à partir des données récupérées
+            user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setNom(resultSet.getString("nom"));
+            // Ajoutez d'autres attributs ici
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return user;
+}
+ //To change body of generated methods, choose Tools | Templates.
+    
      public int getUserIdFromDatabase(String userName) {
         int userId = -1; // Valeur par défaut si l'utilisateur n'est pas trouvé
 

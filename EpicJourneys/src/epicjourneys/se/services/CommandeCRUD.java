@@ -19,12 +19,12 @@ public class CommandeCRUD implements InterfaceCRUD<Commande> {
 
     // Constructeur sans arguments
     public CommandeCRUD() {
-        connection = MyConnection.getInstance().getCnx();
+       
     }
 
     @Override
 public void ajouterEntities(Commande commande) {
-    try {
+    try { connection = MyConnection.getInstance().getCnx();
         String requete = "INSERT INTO Commande (userId, productId, pathFacture) VALUES (?, ?, ?)";
         PreparedStatement pst = connection.prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
         pst.setInt(1, commande.getUserId());

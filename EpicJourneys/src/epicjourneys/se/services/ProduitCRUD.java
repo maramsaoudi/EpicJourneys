@@ -159,6 +159,8 @@ public class ProduitCRUD {
 
     public void modifierProduit(Produit produit) {
         try {
+             Connection connection = MyConnection.getInstance().getCnx();
+
             String requete = "UPDATE Produit SET nom = ?, prixUnitaire = ?, stock = ?, image = ? WHERE id = ?";
             PreparedStatement pst = connection.prepareStatement(requete);
             pst.setString(1, produit.getNom());
