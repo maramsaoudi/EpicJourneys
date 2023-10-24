@@ -31,6 +31,7 @@ public class OffreSpecialEvenment extends Evenement{
                 this.titre =titre;
                 this.niveau = niveau;
     }
+    
     private NiveauCarte niveau;
      
     @Override
@@ -42,7 +43,8 @@ public class OffreSpecialEvenment extends Evenement{
     public Date getDate_depart() {
         return date_depart;
     }
-
+    
+    @Override
     public void setDate_depart(Date date_depart) {
         this.date_depart = date_depart;
     }
@@ -136,7 +138,7 @@ public class OffreSpecialEvenment extends Evenement{
         return niveau;
     }
 
-    void setNiveau(NiveauCarte niveau) {
+   public void setNiveau(NiveauCarte niveau) {
         this.niveau = niveau;
     }  
     void setIdOffreSpecialEvenment(int IdOffreSpecialEvenment) 

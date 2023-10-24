@@ -15,10 +15,12 @@ import java.util.logging.Logger;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import pi.CarteFidelite.NiveauCarte;
+import pi.CarteFidelite.NiveauCarte; 
 
 
-public class CarteFideliteCrud { 
+public class CarteFideliteCrud {  
+ public static ArrayList<String> mails = new ArrayList(); 
+
   private static CarteFideliteCrud instance;
 
 
@@ -68,7 +70,7 @@ public CarteFidelite getCarteFideliteById(int IdCarte) {
             f.setPtsFidelite(rs.getInt(2));
             f.setDateDebut(rs.getDate(3));
             f.setDateFin(rs.getDate(4));
-            f.setIdClient(rs.getInt(5));
+            f.setid(rs.getInt(5));
             String etatStringValue = rs.getString(6);
             CarteFidelite.EtatCarte etatValue = CarteFidelite.EtatCarte.valueOf(etatStringValue);
             f.setEtatCarte(etatValue);
@@ -99,7 +101,7 @@ public boolean incrementDateFin(CarteFidelite carte) {
 
 /*public boolean ajouterCarteFidelite2() 
 { 
-    String requete = "INSERT INTO CarteFidelite (PtsFidelite, DateDebut, DateFin, IdClient, NiveauCarte)"+ "VALUES (0,11/10/2023,11/10/2024, 1,bronze )";
+    String requete = "INSERT INTO CarteFidelite (PtsFidelite, DateDebut, DateFin, id, NiveauCarte)"+ "VALUES (0,11/10/2023,11/10/2024, 1,bronze )";
         try { 
             Statement st = cnx2.createStatement();
             st.executeUpdate(requete); 
@@ -113,7 +115,7 @@ public boolean incrementDateFin(CarteFidelite carte) {
      
 public int parseClientID(int IdCarte) {
     try (Connection connection = cnx2;
-         PreparedStatement preparedStatement = cnx2.prepareStatement("SELECT IdClient FROM CarteFidelite WHERE IdCarte = ?")) {
+         PreparedStatement preparedStatement = cnx2.prepareStatement("SELECT id FROM CarteFidelite WHERE IdCarte = ?")) {
         preparedStatement.setInt(1, IdCarte);
         ResultSet rs = preparedStatement.executeQuery();
         if (rs.next()) {
@@ -126,12 +128,12 @@ public int parseClientID(int IdCarte) {
 }
     
     
-public boolean ajouterCarteFidelite(int IdClient) {
+public boolean ajouterCarteFidelite(int id) {
     try {
         // Check if the client already has a loyalty card
-        String checkQuery = "SELECT IdCarte FROM CarteFidelite WHERE IdClient = ? LIMIT 1";
+        String checkQuery = "SELECT IdCarte FROM CarteFidelite WHERE id = ? LIMIT 1";
         PreparedStatement checkStmt = cnx2.prepareStatement(checkQuery);
-        checkStmt.setInt(1, IdClient);
+        checkStmt.setInt(1, id);
         ResultSet rs = checkStmt.executeQuery();
 
         if (rs.next()) {
@@ -140,7 +142,7 @@ public boolean ajouterCarteFidelite(int IdClient) {
             return false;
         } else {
             // Client does not have a loyalty card, so add one
-            String insertQuery = "INSERT INTO CarteFidelite (PtsFidelite, DateDebut, DateFin, IdClient, NiveauCarte, EtatCarte) " +
+            String insertQuery = "INSERT INTO CarteFidelite (PtsFidelite, DateDebut, DateFin, id, NiveauCarte, EtatCarte) " +
                     "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement insertStmt = cnx2.prepareStatement(insertQuery);
 
@@ -154,13 +156,14 @@ public boolean ajouterCarteFidelite(int IdClient) {
 
             insertStmt.setDate(2, new java.sql.Date(DateDebut.getTime()));
             insertStmt.setDate(3, new java.sql.Date(DateFin.getTime()));
-            insertStmt.setInt(4, IdClient);
+            insertStmt.setInt(4, id);
             insertStmt.setString(5, "bronze");
             insertStmt.setString(6, "active");
 
             int rowsAffected = insertStmt.executeUpdate();
 
-            return rowsAffected > 0;
+            return rowsAffected > 0; 
+            
         }
     } catch (SQLException ex) {
         System.err.println(ex.getMessage());
@@ -182,7 +185,7 @@ public ArrayList<CarteFidelite> afficherCarte(){
                 f.setPtsFidelite(rs.getInt(2));  
                 f.setDateDebut(rs.getDate(3)); 
                 f.setDateFin(rs.getDate(4));   
-                f.setIdClient(rs.getInt(5));
+                f.setid(rs.getInt(5));
                 String EtatCarteString = rs.getString(6); // Assuming this string represents an enum value
                 CarteFidelite.EtatCarte EtatCarteValue = CarteFidelite.EtatCarte.valueOf(EtatCarteString); 
                 f.setEtatCarte(EtatCarteValue);
@@ -223,7 +226,7 @@ public CarteFidelite chercherCarte(int IdCarte) {
             f.setPtsFidelite(rs.getInt(2));
             f.setDateDebut(rs.getDate(3));
             f.setDateFin(rs.getDate(4));
-            f.setIdClient(rs.getInt(5));
+            f.setid(rs.getInt(5));
             String etatStringValue = rs.getString(6);
             CarteFidelite.NiveauCarte etatValue = NiveauCarte.valueOf(etatStringValue);
             f.setNiveauCarte(etatValue);
@@ -241,7 +244,7 @@ public CarteFidelite chercherCarte(int IdCarte) {
 public boolean modifierCarte(CarteFidelite carte,int IdCarte) {
         try {
             Connection connection = cnx2;
-            String requete = "UPDATE user SET, PtsFidelite = ? , DateDebut = ? , DateFin = ?, IdClient = ? , NiveauCarte= ? , EtatCarte = ? WHERE id= " + IdCarte ; 
+            String requete = "UPDATE user SET, PtsFidelite = ? , DateDebut = ? , DateFin = ?, id = ? , NiveauCarte= ? , EtatCarte = ? WHERE id= " + IdCarte ; 
             
             
             PreparedStatement pst = cnx2.prepareStatement(requete);
@@ -249,7 +252,7 @@ public boolean modifierCarte(CarteFidelite carte,int IdCarte) {
             pst.setInt(1, carte.getPtsFidelite());
             pst.setDate(2, (java.sql.Date) carte.getDateDebut());
             pst.setDate(3, (java.sql.Date) carte.getDateFin());
-            pst.setInt(4, carte.getIdClient());
+            pst.setInt(4, carte.getid());
             CarteFidelite.NiveauCarte niveauString = carte.getNiveauCarte(); 
             String Value1 = niveauString.toString(); 
             pst.setString(5,Value1); 
@@ -336,7 +339,7 @@ public boolean SupprimerCarte(int id) {
             f.setPtsFidelite(rs.getInt(2));
             f.setDateDebut(rs.getDate(3));
             f.setDateFin(rs.getDate(4));
-            f.setIdClient(rs.getInt(5));
+            f.setid(rs.getInt(5));
             String etatStringValue = rs.getString(6);
             CarteFidelite.EtatCarte etatValue = CarteFidelite.EtatCarte.valueOf(etatStringValue);
             f.setEtatCarte(etatValue);
@@ -372,7 +375,7 @@ public boolean SupprimerCarte(int id) {
             f.setPtsFidelite(rs.getInt(2));
             f.setDateDebut(rs.getDate(3));
             f.setDateFin(rs.getDate(4));
-            f.setIdClient(rs.getInt(5));
+            f.setid(rs.getInt(5));
             String etatStringValue = rs.getString(6);
             CarteFidelite.EtatCarte etatValue = CarteFidelite.EtatCarte.valueOf(etatStringValue);
             f.setEtatCarte(etatValue);

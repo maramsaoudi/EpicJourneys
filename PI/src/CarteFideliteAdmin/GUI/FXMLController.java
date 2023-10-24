@@ -193,7 +193,7 @@ fxChercher.textProperty().addListener((observable, oldValue, newValue) -> {
         else  {
             System.out.println("Debug: Checking other attributes");
             return String.valueOf(carte.getPtsFidelite()).toLowerCase().contains(lowerCaseFilter)
-                || String.valueOf(carte.getIdClient()).toLowerCase().contains(lowerCaseFilter)
+                || String.valueOf(carte.getid()).toLowerCase().contains(lowerCaseFilter)
                 || carte.getDateDebut().toString().toLowerCase().contains(lowerCaseFilter)
                 || (carte.getDateFin() != null && carte.getDateFin().toString().toLowerCase().contains(lowerCaseFilter))
                 || carte.getEtatCarte().toString().toLowerCase().contains(lowerCaseFilter)

@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -35,6 +36,7 @@ import javafx.util.StringConverter;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import pi.CarteFidelite;
+import pi.CarteFidelite.NiveauCarte;
 
 
 /**
@@ -177,17 +179,36 @@ private int getOffreSpecialClick() {
                 evenement.setDestination(newValue);
                 break;
             case "catégorie":
-                evenement.setDescription(newValue);
+                evenement.setCatégorie(newValue);
                 break;
             case "image":
                 evenement.setImage(newValue);
-                break; 
+                break;  
                 
         }
         OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
         modifier.modifierOffreSpecialEvenment(evenement,x);
     });
-}
+}  
+  /*  private void setupEditableColumnEnum(TableColumn<OffreSpecialEvenment,OffreSpecialEvenment.NiveauCarte> column, String field) {
+    column.setCellFactory(ComboBoxTableCell.forTableColumn(NiveauCarte.values()));
+    column.setOnEditCommit(event -> {
+        int x = getOffreSpecialClick();
+        OffreSpecialEvenment evenement = OffreSpecialEvenementCrud.getEventById(x);
+
+        OffreSpecialEvenment.NiveauCarte newValue = event.getNewValue();
+        switch (field) {
+            case "niveau":
+                evenement.setNiveau(newValue);
+                break;
+        }
+
+        OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
+        modifier.modifierOffreSpecialEvenment(evenement, x);
+    });
+}*/
+
+  
 
 
  private void setupEditableColumnDate(TableColumn<OffreSpecialEvenment, Date> column) {
@@ -211,9 +232,9 @@ private int getOffreSpecialClick() {
     int x=getOffreSpecialClick();
 
     column.setOnEditCommit(event -> {
-        OffreSpecialEvenment evenement = event.getRowValue();
+        OffreSpecialEvenment evenement = OffreSpecialEvenementCrud.getEventById(x);
         String dateString = event.getNewValue().toString(); // Convert java.util.Date to String
-        Date newDate = Date.valueOf(dateString); // Convert String back to java.util.Date
+        Date newDate = Date.valueOf(dateString); 
         evenement.setDate_depart(newDate);
         OffreSpecialEvenementCrud modifier = new OffreSpecialEvenementCrud();
         modifier.modifierOffreSpecialEvenment(evenement,x);
@@ -268,8 +289,10 @@ private int getOffreSpecialClick() {
 
         setupEditableColumnString(fxDestinationOffreE, "destination"); 
         setupEditableColumnString(fxImageOffreE, "image");  
-         //setupEditableColumnString(fxNiveauE, "niveau");
-
+         //setupEditableColumnString(fxNiveauE, "niveau"); 
+         setupEditableColumnDate(fxDateDepartOffre);
+         setupEditableColumnFloat(fxPrix); 
+         //setupEditableColumnEnum(fxNiveauE, "niveau");
 
     
         fxTableOffreSpecial.setEditable(true);

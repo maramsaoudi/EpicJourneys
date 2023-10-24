@@ -32,7 +32,7 @@ public enum EtatCarte
     inactive, }
 
     Connection cnx2;
-    private int IdCarte,PtsFidelite=0,IdClient; 
+    private int IdCarte,PtsFidelite=0,id; 
     private Date DateDebut=new Date(),DateFin;  
     private EtatCarte EtatCarte; 
     public NiveauCarte NiveauCarte; 
@@ -56,12 +56,12 @@ public enum EtatCarte
         this.PtsFidelite = PtsFidelite;
     }
 
-    public int getIdClient() {
-        return IdClient;
+    public int getid() {
+        return id;
     }
 
-    public void setIdClient(int IdClient) {
-        this.IdClient = IdClient;
+    public void setid(int id) {
+        this.id = id;
     }
 
     public Date getDateDebut() {
@@ -96,20 +96,20 @@ public enum EtatCarte
         this.EtatCarte = EtatCarte;
     }
 
-    public CarteFidelite(int IdClient,int PtsFidelite, Date DateDebut, Date DateFin, NiveauCarte NiveauCarte,EtatCarte EtatCarte) {
+    public CarteFidelite(int id,int PtsFidelite, Date DateDebut, Date DateFin, NiveauCarte NiveauCarte,EtatCarte EtatCarte) {
         Calendar calendar=Calendar.getInstance(); 
         this.DateDebut=calendar.getTime(); 
         calendar.add(Calendar.YEAR,1); 
         this.DateFin=calendar.getTime(); 
         this.PtsFidelite = PtsFidelite;
-        this.IdClient = IdClient;
+        this.id = id;
         this.NiveauCarte = NiveauCarte; 
         this.EtatCarte=EtatCarte; 
     }
-    public CarteFidelite(int IdCarte, int PtsFidelite, int IdClient, Date DateDebut, Date DateFin, CarteFidelite.NiveauCarte NiveauCarte) {
+    public CarteFidelite(int IdCarte, int PtsFidelite, int id, Date DateDebut, Date DateFin, CarteFidelite.NiveauCarte NiveauCarte) {
         this.IdCarte = IdCarte;
         this.PtsFidelite = PtsFidelite;
-        this.IdClient = IdClient;
+        this.id = id;
         this.DateDebut = DateDebut;
         this.DateFin = DateFin;
         this.NiveauCarte = NiveauCarte;
@@ -125,7 +125,7 @@ public enum EtatCarte
 
     @Override
     public String toString() {
-        return "CarteFidelite{" + "IdCarte=" + IdCarte + ", PtsFidelite=" + PtsFidelite + ", IdClient=" + IdClient + ", DateDebut=" + DateDebut + ", DateFin=" + DateFin + ", EtatCarte=" + EtatCarte + ", NiveauCarte=" + NiveauCarte + '}';
+        return "CarteFidelite{" + "IdCarte=" + IdCarte + ", PtsFidelite=" + PtsFidelite + ", id=" + id + ", DateDebut=" + DateDebut + ", DateFin=" + DateFin + ", EtatCarte=" + EtatCarte + ", NiveauCarte=" + NiveauCarte + '}';
     }
     
 

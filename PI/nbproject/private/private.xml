@@ -3,18 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/pi/CarteFideliteCrud.java</file>
-            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/OffreSpecialEvenementCrud.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialUserGui/OffreSpecialGUIController.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/CarteFideliteAdmin/GUI/CarteFideliteAdmin.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/CarteFideliteAdmin/GUI/FXMLController.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/pi/QrCode.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEGUI/GUIEVENMENTController.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/OffreSpecialEvenment.java</file>
-            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/OffreEvenmentMain.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/MailSender.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEGUI/OffreSpecialEvenmentGUI.java</file>
-            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/CarteFideliteUser/GUI/CarteFideliteUser.java</file>
             <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/EvenementCrud.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/pi/CarteFideliteCrud.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/OffreSpecialEvenementCrud.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/pi/CarteFidelite.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialEvenment/OffreEvenmentMain.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/CarteFideliteUser/GUI/CarteFideliteUser.java</file>
+            <file>file:/C:/Users/desig/OneDrive/Desktop/PI/src/OffreSpecialUserGui/OffreSpecialUser.java</file>
         </group>
     </open-files>
 </project-private>
