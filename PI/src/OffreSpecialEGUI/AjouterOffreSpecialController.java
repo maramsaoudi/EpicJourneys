@@ -28,21 +28,18 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pi.CarteFidelite; 
 import OffreSpecialEvenment.OffreSpecialEvenementCrud;
+import static java.time.temporal.TemporalQueries.localDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author desig
- */
 public class AjouterOffreSpecialController implements Initializable {
-
     @FXML
     private Button fxRetourInitial;
-    private File selectedImageFile; 
-    @FXML
+    
+  private File selectedImageFile; 
+   @FXML
     private Button fxImportAchraf; 
     @FXML
     private ImageView imageOffre;
@@ -54,6 +51,7 @@ public class AjouterOffreSpecialController implements Initializable {
     private TextField fxGuideIdOffre;
     @FXML
     private TextField fxDestinationOffre;
+    
     @FXML
     private ComboBox<String> fxNiveauOffre;
     @FXML
@@ -64,6 +62,9 @@ public class AjouterOffreSpecialController implements Initializable {
     private TextField fxCattegorieOffre;
     @FXML
     private Button fxAjouterOffre;
+    @FXML
+    private Label fxAjouterOffrelabel;
+   
 
 @FXML
 void retourToSceneInitiale(ActionEvent event) {
@@ -92,45 +93,59 @@ private void fxImportAchraf(ActionEvent event) {
         }
     }  
 @FXML
-private void AjouterOffreSpecialE(ActionEvent event) {
-    try {OffreSpecialEvenementCrud cnx2 = new OffreSpecialEvenementCrud(); 
-        String titreOffre = fxTitreOffre.getText();
-        float prixOffre = Float.parseFloat(fxPrixOffre.getText());
-        int guideIdOffre = Integer.parseInt(fxGuideIdOffre.getText());
-        String destinationOffre = fxDestinationOffre.getText();
-        OffreSpecialEvenment.NiveauCarte niveauOffre = OffreSpecialEvenment.NiveauCarte.valueOf(fxNiveauOffre.getValue());
-        LocalDate localDate = fxDateDepartOffre.getValue();
-        Date dateDepartOffre = java.sql.Date.valueOf(localDate);
-        String descriptionOffre = fxDescriptionOFfre.getText();
-        String cattegorieOffre = fxCattegorieOffre.getText(); 
-        if (cattegorieOffre == null) 
-        { 
-            System.out.println("Crud 8alet"); 
-            
-        }
-        else {
 
-        
-        OffreSpecialEvenment evenment1 = new OffreSpecialEvenment(cattegorieOffre, dateDepartOffre, descriptionOffre, destinationOffre, guideIdOffre, imagePathOffre, prixOffre, titreOffre, niveauOffre);
-        
-            
-        cnx2.ajouterOffreSpecialEvenment(evenment1); 
-        retourToSceneInitiale(event);
+private void AjouterOffreSpecialE(ActionEvent event) { 
+    try {
+        OffreSpecialEvenementCrud cnx2 = new OffreSpecialEvenementCrud();
+        String titreOffre = fxTitreOffre.getText();
+        String prixOffreText = fxPrixOffre.getText();
+        String guideIdOffreText = fxGuideIdOffre.getText();
+        String destinationOffre = fxDestinationOffre.getText();
+        String niveauOffreValue = fxNiveauOffre.getValue();  
+        if (titreOffre.isEmpty() || prixOffreText.isEmpty() || guideIdOffreText.isEmpty()
+                || destinationOffre.isEmpty() || niveauOffreValue == null ) {
+            fxAjouterOffrelabel.setText("Please fill in all fields.");
+        } else {
+            float prixOffre = Float.parseFloat(prixOffreText);
+            int guideIdOffre = Integer.parseInt(guideIdOffreText);
+            OffreSpecialEvenment.NiveauCarte niveauOffre = OffreSpecialEvenment.NiveauCarte.valueOf(niveauOffreValue);
+
+            LocalDate localDate = fxDateDepartOffre.getValue();
+            Date dateDepartOffre = java.sql.Date.valueOf(localDate);
+            String descriptionOffre = fxDescriptionOFfre.getText();
+            String cattegorieOffre = fxCattegorieOffre.getText();  
+
+            // Check if the selected date is in the past
+            LocalDate currentDate = LocalDate.now();
+            if (localDate.isBefore(currentDate)) {
+                fxAjouterOffrelabel.setText("Selected date is in the past.");
+            } else {
+                OffreSpecialEvenment evenment1 = new OffreSpecialEvenment(cattegorieOffre, dateDepartOffre, descriptionOffre, destinationOffre, guideIdOffre, imagePathOffre, prixOffre, titreOffre, niveauOffre);
+                cnx2.ajouterOffreSpecialEvenment(evenment1);
+                retourToSceneInitiale(event);
+            }
         }
-        
     } catch (NumberFormatException e) {
         System.err.println("Invalid number format in prix or guide ID.");
+        fxAjouterOffrelabel.setText("Invalid number format in prix or guide ID.");
     } catch (IllegalArgumentException e) {
         System.err.println("Invalid value for NiveauCarte.");
+        fxAjouterOffrelabel.setText("Invalid value for NiveauCarte.");
     }
 }
+
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
         ObservableList<String> niveauOptions = FXCollections.observableArrayList("bronze", "silver", "gold");
-         fxNiveauOffre.setItems(niveauOptions);
+         fxNiveauOffre.setItems(niveauOptions); 
+         
+         
+         
+         
+         
 
         
 

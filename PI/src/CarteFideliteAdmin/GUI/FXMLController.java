@@ -48,7 +48,8 @@ import pi.myConnection;
 import pi.CarteFideliteCrud;
 
 
-public class FXMLController implements Initializable {
+public class FXMLController implements Initializable { 
+        
         private CarteFideliteCrud cnx2;
         public FXMLController() 
         { 
@@ -94,7 +95,7 @@ public class FXMLController implements Initializable {
     private CheckBox fxSelectAll;
     @FXML
 private int getCarte() {
-    int idCarte = -1; // Default value if not found
+    int idCarte = -1; 
     index = fxTableCarte.getSelectionModel().getSelectedIndex();
     if (index >= 0) {
         CarteFidelite selectedCarte = fxTableCarte.getItems().get(index);
@@ -110,7 +111,8 @@ private CarteFideliteCrud carteFideliteCrud;
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) { 
+    public void initialize(URL url, ResourceBundle rb) {  
+        System.err.println(getCarte());
    /* fxSelectAll.selectedProperty().addListener(new ChangeListener<boolean>(){
      @Override 
      public void changed(ObservableValue<? extends boolean> observable, Boolean oldValue,Boolean newvalue) 
@@ -130,7 +132,7 @@ private CarteFideliteCrud carteFideliteCrud;
     fxTableCarte.setItems(listC);  
     
        
-        
+    
     fxSuspend.setOnAction(new EventHandler<ActionEvent>() {
     @Override
     public void handle(ActionEvent event) {

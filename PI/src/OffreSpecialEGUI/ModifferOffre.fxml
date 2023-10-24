@@ -64,28 +64,23 @@
             <Image url="@../CarteFideliteUser/GUI/User.png" />
          </image>
       </ImageView>
-      <TextField fx:id="fxTitreOffre" layoutX="200.0" layoutY="180.0" prefHeight="38.0" prefWidth="118.0">
+      <TextField fx:id="mofxTitreOffre" layoutX="200.0" layoutY="180.0" prefHeight="38.0" prefWidth="118.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></TextField>
-      <TextField fx:id="fxPrixOffre" layoutX="200.0" layoutY="285.0" prefWidth="88.0" />
-      <TextField fx:id="fxGuideIdOffre" layoutX="217.0" layoutY="342.0" prefWidth="135.0" />
-      <TextField fx:id="fxDestinationOffre" layoutX="210.0" layoutY="405.0" />
-      <Button fx:id="fxAjouterOffre" layoutX="751.0" layoutY="520.0" mnemonicParsing="false" onAction="#AjouterOffreSpecialE" prefHeight="45.0" prefWidth="126.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Ajouter">
+      <TextField fx:id="mofxPrixOffre" layoutX="200.0" layoutY="285.0" prefWidth="88.0" />
+      <TextField fx:id="mofxGuideIdOffre" layoutX="217.0" layoutY="342.0" prefWidth="135.0" />
+      <TextField fx:id="mofxDestinationOffre" layoutX="210.0" layoutY="405.0" />
+      <Button fx:id="mofxAjouterOffre" layoutX="751.0" layoutY="520.0" mnemonicParsing="false" onAction="#AjouterOffreSpecialE" prefHeight="45.0" prefWidth="126.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Modifier">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="fxRetourInitial" layoutX="564.0" layoutY="520.0" mnemonicParsing="false" onAction="#retourToSceneInitiale" prefHeight="45.0" prefWidth="145.0" text="Cancel" />
-      <DatePicker fx:id="fxDateDepartOffre" layoutX="200.0" layoutY="229.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" />
-      <TextArea fx:id="fxDescriptionOFfre" layoutX="564.0" layoutY="357.0" prefHeight="147.0" prefWidth="277.0" />
-      <TextField fx:id="fxCattegorieOffre" layoutX="208.0" layoutY="473.0" />
-      <Button fx:id="fxImportAchraf" layoutX="614.0" layoutY="235.0" mnemonicParsing="false" onAction="#fxImportAchraf" prefHeight="38.0" prefWidth="109.0" text="Import image" />
-      <ImageView fx:id="imageOffre" fitHeight="109.0" fitWidth="151.0" layoutX="743.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
-      <ComboBox fx:id="fxNiveauOffre" layoutX="590.0" layoutY="180.0" prefWidth="135.0" promptText="niveau" />
-      <Label fx:id="fxAjouterOffrelabel" layoutX="535.0" layoutY="66.0" prefHeight="45.0" prefWidth="417.0">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
+      <Button fx:id="mofxRetourInitial" layoutX="564.0" layoutY="520.0" mnemonicParsing="false" onAction="#retourToSceneInitiale" prefHeight="45.0" prefWidth="145.0" text="Cancel" />
+      <DatePicker fx:id="mofxDateDepartOffre" layoutX="200.0" layoutY="229.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" />
+      <TextArea fx:id="mofxDescriptionOFfre" layoutX="564.0" layoutY="357.0" prefHeight="147.0" prefWidth="277.0" />
+      <TextField fx:id="mofxCattegorieOffre" layoutX="208.0" layoutY="473.0" />
+      <Button fx:id="mofxImportAchraf" layoutX="614.0" layoutY="235.0" mnemonicParsing="false" onAction="#fxImportAchraf" prefHeight="38.0" prefWidth="109.0" text="Import image" />
+      <ImageView fx:id="moimageOffre" fitHeight="109.0" fitWidth="151.0" layoutX="743.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
+      <ComboBox fx:id="mofxNiveauOffre" layoutX="590.0" layoutY="180.0" prefWidth="135.0" promptText="niveau" />
    </children>
 </AnchorPane>

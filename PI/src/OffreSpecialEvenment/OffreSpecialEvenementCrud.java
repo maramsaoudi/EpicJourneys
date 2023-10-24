@@ -1,5 +1,7 @@
 package OffreSpecialEvenment;
 
+import OffreSpecialEvenment.OffreSpecialEvenment.NiveauCarte;
+import com.mysql.jdbc.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,18 +14,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import pi.CarteFidelite;
 import pi.myConnection; 
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import pi.CarteFideliteCrud;
 
 
-/**
- *
- * @author mkanz
- */
+
 public class OffreSpecialEvenementCrud {
 
     Connection cnx2;
@@ -100,11 +103,11 @@ String requete2 = "INSERT INTO OffreSpecialEvenment (titre, description, prix, d
     
     
     
-        public void supprimerOffreSpecialEvenmet (OffreSpecialEvenment e){
+        public void supprimerOffreSpecialEvenmet (int id){
         try {
             String requete2 = "DELETE FROM OffreSpecialEvenment WHERE IdOffreSpecialEvenment  =?";
             PreparedStatement pst = cnx2.prepareStatement(requete2);
-            pst.setInt(1, e.getIdEvenement());
+            pst.setInt(1, id);
             pst.executeUpdate();
             System.out.println("Offre Special supprimé ! ");
             
@@ -148,7 +151,8 @@ public List<OffreSpecialEvenment> afficherOffreSpecial(int userId) {
         // Handle the SQL exception appropriately
     }
     return myList;
-}    
+}     
+
     
 public List<OffreSpecialEvenment> afficherOffreSpecial() {
     List<OffreSpecialEvenment> myList = new ArrayList<>();
@@ -212,7 +216,39 @@ public ObservableList<OffreSpecialEvenment> listeDesOffres() {
         System.out.println(ex.getMessage());
     }
     return myList;
-}//IdOffreSpecialEvenment
+} 
+
+public static OffreSpecialEvenment getEventById(int eventId) {
+    OffreSpecialEvenment event = null; 
+    Connection cnx3 = myConnection.getInstance().getCnx();
+    String sql = "SELECT * FROM offrespecialevenment WHERE IdOffreSpecialEvenment = ?";
+
+    try {
+         PreparedStatement statement = cnx3.prepareStatement(sql); 
+        statement.setInt(1, eventId);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                    event = new OffreSpecialEvenment(
+                    resultSet.getString("catégorie"),
+                    resultSet.getDate("date_depart"),
+                    resultSet.getString("description"),
+                    resultSet.getString("destination"),
+                    resultSet.getInt("guide_id"),
+                    resultSet.getString("image"),
+                    resultSet.getFloat("prix"),
+                    resultSet.getString("titre"),
+                    NiveauCarte.valueOf(resultSet.getString("niveau"))
+                );
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return event;
+}
+
 
 
     

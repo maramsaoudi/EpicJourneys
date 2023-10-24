@@ -1,10 +1,9 @@
 /*
-*
-*   Author: Antonio Pelusi
-*   Website: https://www.antoniopelusi.com
-*   Source code: https://github.com/antoniopelusi/JavaFX-Dark-Theme
-*
-*/
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
 
 .root{
     -fx-background-color: #2D2D30;
@@ -729,10 +728,12 @@
     -fx-text-fill: #AFB1B3;
     -fx-padding: 5;
     padding: 5;
+}
 
-
-    .anchor-pane {
-        -fx-background-color: #282828;
-    }
     
+.anchor-pane {
+    -fx-background-color: #282828;
+}
+      
+
 }

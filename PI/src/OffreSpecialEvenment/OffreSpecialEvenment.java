@@ -57,9 +57,21 @@ public class OffreSpecialEvenment extends Evenement{
         this.description = description;
     }
 
+    @Override
     public String getImage() {
         return image;
+    } 
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
+    
+ 
+    
+    public int getIdOffreSpecialEvenment() {
+        return IdOffreSpecialEvenment;
+    }
+    
 
     @Override
     public void setImage(String image) {

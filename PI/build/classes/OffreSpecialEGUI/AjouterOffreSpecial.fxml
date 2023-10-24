@@ -82,5 +82,10 @@
       <Button fx:id="fxImportAchraf" layoutX="614.0" layoutY="235.0" mnemonicParsing="false" onAction="#fxImportAchraf" prefHeight="38.0" prefWidth="109.0" text="Import image" />
       <ImageView fx:id="imageOffre" fitHeight="109.0" fitWidth="151.0" layoutX="743.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="fxNiveauOffre" layoutX="590.0" layoutY="180.0" prefWidth="135.0" promptText="niveau" />
+      <Label fx:id="fxAjouterOffrelabel" layoutX="535.0" layoutY="66.0" prefHeight="45.0" prefWidth="417.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
