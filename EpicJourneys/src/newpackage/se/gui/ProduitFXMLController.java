@@ -77,7 +77,7 @@ public class ProduitFXMLController implements Initializable {
             Amira_imageView.setImage(image);
         }
     }
-    //String imagepathproduit=null;
+    String imagepathproduit=null;
 
     @FXML
     private void Amira_save_BT(ActionEvent event) {
@@ -102,13 +102,13 @@ public class ProduitFXMLController implements Initializable {
                         fis.close();
 
                         String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
+                        imagepathproduit=selectedImageFile.getAbsolutePath();
 
                         Produit produit = new Produit();
                         produit.setNom(nom);
                         produit.setPrixUnitaire(prixUnitaire);
                         produit.setStock(stock);
-                        produit.setImage(imageBase64);
-                        //imagepathproduit=selectedImageFile.getAbsolutePath();
+                        produit.setImage(imagepathproduit);
                         produitCRUD.ajouterEntities(produit);
 
                         ObservableList<Produit> produits = produitCRUD.listeDesEntities1();

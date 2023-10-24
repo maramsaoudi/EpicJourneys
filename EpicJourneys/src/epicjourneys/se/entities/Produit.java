@@ -58,6 +58,7 @@ public class Produit {
     public String getImage() {
         return image;
     }
+    
 
     // Méthodes de modification (setters) si nécessaire
     public void setId(int id) {
