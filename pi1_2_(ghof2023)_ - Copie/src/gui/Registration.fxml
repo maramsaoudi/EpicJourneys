@@ -47,7 +47,6 @@
       </Button>
       <Label fx:id="pErrorMessage" layoutX="340.0" layoutY="366.0" prefHeight="18.0" prefWidth="136.0" textFill="#d10000" />
       <Label fx:id="btnBack" layoutX="34.0" layoutY="24.0" text="Back" />
-      <Button fx:id="excel" layoutX="600.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnexcel" text="excel" />
       
    </children>
 </AnchorPane>

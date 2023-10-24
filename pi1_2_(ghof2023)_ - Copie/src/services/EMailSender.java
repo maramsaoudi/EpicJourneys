@@ -1,10 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package services;
 
-import com.sun.xml.internal.ws.resources.XmlmessageMessages;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -13,61 +14,54 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
-import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
+/**
+ *
+ * @author ANIS
+ */
 public class EMailSender {
+  
+    public static void sendEmail(String from, String password, String to, String subject, String body) {
 
-    public static void sendMail(String recipient) throws Exception {
-        System.out.println("Preparing to send an email.");
+        // Set properties for the email session
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
 
-        Properties props = new Properties(); 
-        props.put("mail.debug", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com"); 
-        props.put("mail.smtp.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+        // Create a new email session with the properties
+        Session session = Session.getInstance(properties,
+            new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("ghofranetayari61@gmail.com", "ugve iuxe xqth ffmx");
+                }
+            });
 
-        String myAccountEmail = "gghofrane076@gmail.com";
-        String password = "123456789ab,"; 
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(myAccountEmail, password);
-            }
-        } 
-        );
-        session.setDebug(true);
-
-
-        Message message = prepareMessage(session, myAccountEmail, recipient);
-        if (message != null) {
-            Transport.send(message);
-            System.out.println("Email sent successfully.");
-        }
-    }
-
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient) {
         try {
-            System.out.println("Trying to send email.");
+            
+            // Create a new email message
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("Subject of the email");
-            message.setText("Hello,\nThis is the email content.\nRegards.");
-            return message;
-        } catch (MessagingException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
+            message.setFrom(new InternetAddress("ghofranetayari61@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject("code verification");
+           // message.setText("123");
+           int code = 123; // Remplacez 123 par votre code
+String codeAsString = String.valueOf(code); // Convertir l'entier en chaîne de caractères
+message.setText(codeAsString); // Utiliser la chaîne de caractères dans le corps de l'e-mail
 
-    public static void sendEmail(String ghofranetayariesprittn, String cin22484270, String text, String verification_code, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
+
+
+
+
+
+            // Send the email message
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }   
 }

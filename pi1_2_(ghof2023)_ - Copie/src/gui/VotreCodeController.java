@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
 /**
  * FXML Controller class
  *
@@ -44,39 +45,33 @@ public class VotreCodeController implements Initializable {
 
     @FXML
     private void confirmer(ActionEvent event) {
-        if(fentervotrecode.getText().isEmpty()){
-         Alert alert = new Alert(Alert.AlertType.WARNING);
+      if (fentervotrecode.getText().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Champs manquants");
         alert.setHeaderText(null);
         alert.setContentText("Champs vide !");
         alert.showAndWait();
-        }else{
-        if (Integer.parseInt(fentervotrecode.getText()) == MdpOubliéUserController.code)
-        {
-              try {
+    } else {
+        int enteredCode = Integer.parseInt(fentervotrecode.getText().trim()); // Conversion du texte en entier
 
-            Parent page1 = FXMLLoader.load(getClass().getResource("ResetPassword.fxml"));
+        // Affichage des valeurs pour le débogage
+        System.out.println("enteredCode: " + enteredCode);
+        System.out.println("MdpOubliéUserController.code: " + MdpOubliéUserController.code);
 
-            Scene scene = new Scene(page1);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(scene);
-
-            stage.show();
-
-        } catch (IOException ex) {
-
-           System.out.println(ex.getMessage());
-
-        }
-        }
-        else 
-        {
+        if (enteredCode == MdpOubliéUserController.code) {
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("ResetPassword.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
             Alert A = new Alert(Alert.AlertType.WARNING);
-            A.setContentText("Code erroné ! ");
+            A.setContentText("Code erroné !");
             A.show();
-            
         }
     }
     }

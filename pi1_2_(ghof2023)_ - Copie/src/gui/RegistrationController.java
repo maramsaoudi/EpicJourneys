@@ -82,8 +82,7 @@ public class RegistrationController implements Initializable {
     public String msgError = "Veuillez remplir tous les champs correctement !";
 
     UserCRUD serviceuser = new UserCRUD();
-    @FXML
-    private Button excel;
+   // private Button excel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -300,67 +299,6 @@ public class RegistrationController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnexcel(ActionEvent event) {
-      
-        FileChooser fileChooser = new FileChooser();
-    
-    // Set extension filter for Excel files
-    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (.xlsx)", ".xlsx");
-    fileChooser.getExtensionFilters().add(extFilter);
-    
-    // Show save file dialog
-    File file = fileChooser.showSaveDialog(((Stage) excel.getScene().getWindow()));
-    
-    if (file != null) {
-        try {
-            // Create new Excel workbook and sheet
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("userdetails");
-
-            // Create header row
-            Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("id");
-            headerRow.createCell(1).setCellValue("nom");
-            headerRow.createCell(2).setCellValue("prenom");
-            headerRow.createCell(3).setCellValue("email");
-            headerRow.createCell(4).setCellValue("numerotelephon");
-
-            // Add data rows
-            UserCRUD userCRUD = new UserCRUD();
-            List<User> salleDeSport = userCRUD.rechercherTousLesUtilisateurs();
-            for (int i = 0; i < salleDeSport.size(); i++) {
-                Row row = sheet.createRow(i + 1);
-                row.createCell(0).setCellValue(salleDeSport.get(i).getId());
-                row.createCell(1).setCellValue(salleDeSport.get(i).getNom());
-                row.createCell(2).setCellValue(salleDeSport.get(i).getPrenom());
-                row.createCell(3).setCellValue(salleDeSport.get(i).getEmail());
-                row.createCell(4).setCellValue(salleDeSport.get(i).getNumeroTelephone());
-            }
-
-            // Write to file
-            FileOutputStream fileOut = new FileOutputStream(file);
-            workbook.write(fileOut);
-            fileOut.close();
-            workbook.close();
-            
-            // Show success message
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.initStyle(StageStyle.UTILITY);
-            alert.setTitle("Export Successful");
-            alert.setHeaderText(null);
-            alert.setContentText("User data exported to Excel file.");
-            alert.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initStyle(StageStyle.UTILITY);
-            alert.setTitle("Export Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("An error occurred while exporting user data to Excel file.");
-            alert.showAndWait();
-        }
-    }
-    }   
+   
     }
 

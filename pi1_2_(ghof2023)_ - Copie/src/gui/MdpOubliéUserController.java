@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import services.UserCRUD;
 
 
+
 /**
  * FXML Controller class
  *
@@ -81,7 +82,7 @@ public class MdpOubliéUserController implements Initializable {
         if (!MVotreadresseemail.getText().equals("") && verifMail) {
             if (user.ChercherMail(MVotreadresseemail.getText()) == 1) {
                 EmailReset = MVotreadresseemail.getText();
-                EMailSender.sendEmail("gghofran076@gmail.com", "123456789ab,", MVotreadresseemail.getText(), "Verification code", "Votre code est : " + code);
+                EMailSender.sendEmail("ghofranetayari61@gmail.com", "ugve iuxe xqth ffmx", MVotreadresseemail.getText(), "Verification code", "Votre code est : " + code);
 
                 try {
 

@@ -40,6 +40,9 @@ import javafx.scene.input.MouseEvent;
 import gui.SignController;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import services.UserCRUD;
 
 
@@ -455,7 +458,11 @@ AvisCRUD serviceavis = new AvisCRUD();
     }*/
 
 
+  
+
+    @FXML
     private void Logout(ActionEvent event) {
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Sign.fxml"));
             try {
                 Parent root = loader.load();
@@ -463,4 +470,7 @@ AvisCRUD serviceavis = new AvisCRUD();
             } catch (IOException e) {
             }
     }
+    
+   
 }
+

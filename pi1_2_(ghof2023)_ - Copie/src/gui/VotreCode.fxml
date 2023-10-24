@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VotreCodeController">
    <children>
-      <TextField fx:id="fentervotrecode" layoutX="225.0" layoutY="115.0" promptText="Enter votre code" />
-      <Button fx:id="vconfirm" layoutX="164.0" layoutY="267.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
+      <TextField fx:id="fentervotrecode" layoutX="206.0" layoutY="135.0" prefHeight="39.0" prefWidth="186.0" promptText="Enter votre code" />
+      <Button fx:id="vconfirm" layoutX="171.0" layoutY="228.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="39.0" prefWidth="78.0" text="Confirmer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       
-      <Button fx:id="vannuler" layoutX="340.0" layoutY="267.0" mnemonicParsing="false" onAction="#annuler" text="annuler" />
+      <Button fx:id="vannuler" layoutX="364.0" layoutY="228.0" mnemonicParsing="false" onAction="#annuler" prefHeight="39.0" prefWidth="78.0" text="annuler">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="137.0" layoutY="48.0" text="Votre code de verification" textFill="#6e6d6d">
+         <font>
+            <Font name="System Bold Italic" size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entities.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -49,9 +50,21 @@ public class SignController implements Initializable {
     private ImageView imgsmall;
     @FXML
     private Label fForgotpassword;
+    
+      private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+       
+        
         // Vous pouvez ajouter des initialisations ou des actions ici si nécessaire
 
         fsignup.setOnMouseClicked((t) -> {
@@ -85,54 +98,59 @@ public class SignController implements Initializable {
         File fileLogo2 = new File("C:\\Users\\ghofr\\OneDrive\\Bureau\\PI\\WorkDone\\WorkDone\\pi1-2\\pi1-2\\src\\Resources\\epic2.png");
         Image logo2 = new Image(fileLogo2.toURI().toString());
         imgbig.setImage(logo2);
+        
+        
+        
+        
     }
 
     @FXML
 
     private void login(ActionEvent event) throws IOException {
         
-        String email = femail.getText();
-        String password = fpassword.getText();
+      
+    String email = femail.getText();
+    String password = fpassword.getText();
 
-        if (!isValidEmail(email) || !isValidPwd(password)) {
+    if (!isValidEmail(email) || !isValidPwd(password)) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(msgError);
+        alert.showAndWait();
+    } else {
+        if (serviceuser.isEmailAlreadyUsed(email)) {
+            User user = serviceuser.getUserByCredentials(email, password);
+            if (user != null) {
+    if (user.getRole().equals("ADMIN")) {
+        // Rediriger l'administrateur vers la page d'administration
+        FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+        Parent adminRoot = adminLoader.load();
+        femail.getScene().setRoot(adminRoot);
+    } else if (user.getRole().equals("CLIENT")) {
+        // Rediriger le client vers sa page
+        FXMLLoader clientLoader = new FXMLLoader(getClass().getResource("ClientPage.fxml"));
+        Parent clientRoot = clientLoader.load();
+        femail.getScene().setRoot(clientRoot);
+    } else {
+        showAlert("Rôle inconnu : " + user.getRole());
+    }
+} else {
+    showAlert("Email et/ou mot de passe incorrect(s)");
+}
+
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText(msgError);
+            alert.setContentText("Pas de compte avec cet email");
             alert.showAndWait();
-        } else {
-            if (serviceuser.isEmailAlreadyUsed(email)) {
-                if (serviceuser.getUserByCredentials(email, password) != null) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("TableView.fxml"));
-                    try {
-                        Parent root = loader.load();
-                        femail.getScene().setRoot(root);
-                    } catch (IOException e) {
-                    }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.initStyle(StageStyle.UTILITY);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Email ou/& mot de passe incorrecte");
-                    alert.showAndWait();
-                }
-            }
-            else{
-                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.initStyle(StageStyle.UTILITY);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Pas de compte avec cet email");
-                    alert.showAndWait();
-            }
-
         }
-
     }
-
-    public boolean isValidPwd(String str) {
+}
+      public boolean isValidPwd(String str) {
         if (str == null || str.isEmpty()) {
             msgError = "Mot de passe ne peut pas etre vide";
             return false;
@@ -158,6 +176,8 @@ public class SignController implements Initializable {
 
     }
     
+
+
     
 
 }

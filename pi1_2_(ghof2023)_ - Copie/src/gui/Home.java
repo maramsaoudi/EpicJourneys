@@ -40,7 +40,7 @@ public class Home extends Application {
             
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Welcome ");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

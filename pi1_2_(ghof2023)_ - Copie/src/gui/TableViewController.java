@@ -2,6 +2,7 @@ package gui;
 
 import entities.User;
 import entities.UserRole;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -35,9 +37,33 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.text.Document;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import services.Pdfgenerator;
 import services.UserCRUD;
+
+
+
+//import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javafx.stage.FileChooser;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 //import com.itextpdf.text.Document;
 /*import com.itextpdf.text.DocumentException;
@@ -110,6 +136,10 @@ public class TableViewController implements Initializable {
     
     UserCRUD serviceuser = new UserCRUD();
     public String msgError = "Veuillez remplir tous les champs correctement !";
+    @FXML
+    private Button excel;
+    @FXML
+    private Button pdf;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -529,6 +559,77 @@ public class TableViewController implements Initializable {
             } catch (IOException e) {
             }
     }
+
+    @FXML
+    private void btnexcel(ActionEvent event) {
+      
+        FileChooser fileChooser = new FileChooser();
+    
+    // Set extension filter for Excel files
+    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (.xlsx)", ".xlsx");
+    fileChooser.getExtensionFilters().add(extFilter);
+    
+    // Show save file dialog
+    File file = fileChooser.showSaveDialog(((Stage) excel.getScene().getWindow()));
+    
+    if (file != null) {
+        try {
+            // Create new Excel workbook and sheet
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("userdetails");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("id");
+            headerRow.createCell(1).setCellValue("nom");
+            headerRow.createCell(2).setCellValue("prenom");
+            headerRow.createCell(3).setCellValue("email");
+            headerRow.createCell(4).setCellValue("numerotelephone");
+
+            // Add data rows
+            UserCRUD userCRUD = new UserCRUD();
+            List<User> salleDeSport = userCRUD.rechercherTousLesUtilisateurs();
+            for (int i = 0; i < salleDeSport.size(); i++) {
+                Row row = sheet.createRow(i + 1);
+                row.createCell(0).setCellValue(salleDeSport.get(i).getId());
+                row.createCell(1).setCellValue(salleDeSport.get(i).getNom());
+                row.createCell(2).setCellValue(salleDeSport.get(i).getPrenom());
+                row.createCell(3).setCellValue(salleDeSport.get(i).getEmail());
+                row.createCell(4).setCellValue(salleDeSport.get(i).getNumeroTelephone());
+            }
+
+            // Write to file
+            FileOutputStream fileOut = new FileOutputStream(file);
+            workbook.write(fileOut);
+            fileOut.close();
+            workbook.close();
+            
+            // Show success message
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle("Export Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("User data exported to Excel file.");
+            alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle("Export Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("An error occurred while exporting user data to Excel file.");
+            alert.showAndWait();
+        }
+    }
+    }   
+
+    @FXML
+    private void exportpdf(ActionEvent event) throws DocumentException {
+        Pdfgenerator d = new Pdfgenerator();
+        d.generatePdfe();
+    }
+    
+        
 }
 
  
