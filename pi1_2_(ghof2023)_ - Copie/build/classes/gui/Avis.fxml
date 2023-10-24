@@ -2,26 +2,45 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="547.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AvisController">
+<AnchorPane id="AnchorPane" prefHeight="578.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AvisController">
    <children>
-      <Button layoutX="772.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Logout" />
-      <TableView fx:id="atable" layoutX="81.0" layoutY="274.0" prefHeight="234.0" prefWidth="718.0">
+      <Button layoutX="772.0" layoutY="23.0" mnemonicParsing="false" onAction="#Logout" prefHeight="26.0" prefWidth="70.0" text="Logout">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TableView fx:id="atable" layoutX="287.0" layoutY="236.0" prefHeight="302.0" prefWidth="554.0" style="-fx-background-color: #FFFAF0;">
         <columns>
-          <TableColumn fx:id="com_auteur" prefWidth="263.19995880126953" text="auteur" />
-          <TableColumn fx:id="col_note" minWidth="0.0" prefWidth="236.79989624023438" text="note" />
-            <TableColumn fx:id="col_contenu" prefWidth="216.80001220703127" text="contenu" />
+          <TableColumn fx:id="com_auteur" prefWidth="180.7999725341797" text="auteur" />
+          <TableColumn fx:id="col_note" minWidth="0.0" prefWidth="155.20001220703125" text="note" />
+            <TableColumn fx:id="col_contenu" prefWidth="214.4000244140625" text="contenu" />
         </columns>
       </TableView>
-      <TextField fx:id="aauteur" layoutX="120.0" layoutY="112.0" promptText="auteur" />
-      <TextField fx:id="acontenu" layoutX="599.0" layoutY="87.0" prefHeight="74.0" prefWidth="193.0" promptText="contenu" />
-      <ComboBox fx:id="anote" layoutX="365.0" layoutY="112.0" prefWidth="150.0" promptText="note" />
-      <Button fx:id="abtnajouter" layoutX="145.0" layoutY="218.0" mnemonicParsing="false" onAction="#handleAjouterButtonAction" prefHeight="26.0" prefWidth="78.0" text="ajouter" />
-      <Button fx:id="abtnmodifier" layoutX="365.0" layoutY="218.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="modifier" />
-      <Button fx:id="abtnsupprimer" layoutX="559.0" layoutY="218.0" mnemonicParsing="false" onAction="#handleSupprimerButtonAction" prefHeight="26.0" prefWidth="88.0" text="supprimer" />
+      <TextField fx:id="aauteur" layoutX="46.0" layoutY="165.0" prefHeight="38.0" prefWidth="194.0" promptText="auteur" />
+      <TextField fx:id="acontenu" layoutX="48.0" layoutY="302.0" prefHeight="170.0" prefWidth="194.0" promptText="contenu" />
+      <ComboBox fx:id="anote" layoutX="48.0" layoutY="236.0" prefHeight="37.0" prefWidth="194.0" promptText="note" />
+      <Button fx:id="abtnajouter" layoutX="62.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleAjouterButtonAction" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: #0f8fdf;" text="ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="abtnmodifier" layoutX="383.0" layoutY="172.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #0f8fdf;" text="modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="abtnsupprimer" layoutX="583.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleSupprimerButtonAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #0f8fdf;" text="supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="364.0" layoutY="57.0" prefHeight="75.0" prefWidth="168.0" text="write a review">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
