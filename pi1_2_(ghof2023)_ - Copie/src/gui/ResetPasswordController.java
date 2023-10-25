@@ -39,6 +39,8 @@ public class ResetPasswordController implements Initializable {
     private TextField RVerifyPassword;
     @FXML
     private Button RReset;
+    @FXML
+    private Button rannuler;
 
     /**
      * Initializes the controller class.
@@ -82,27 +84,41 @@ JOptionPane.showMessageDialog(null, "password do not match");
             A.setContentText("Mot de passe modifié avec succes ! ");
             A.show();
             try {
-
-                Parent page1 = FXMLLoader.load(getClass().getResource("Signin.fxml"));
-
-                Scene scene = new Scene(page1);
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                stage.setScene(scene);
-
-                stage.show();
-
-            } catch (IOException ex) {
-
-                System.out.println(ex.getMessage());
-
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Sign.fxml"));
+            Parent page1 = loader.load();
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
         } else {
             A.setContentText("veuillez saisir un mot de passe conforme !");
             A.show();
         }
 
+    }
+
+    @FXML
+    private void annuler(ActionEvent event) {
+         try {
+
+            Parent page1 = FXMLLoader.load(getClass().getResource("Sign.fxml"));
+
+            Scene scene = new Scene(page1);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+
+            stage.show();
+
+        } catch (IOException ex) {
+
+           System.out.println(ex.getMessage());
+
+        }
     }
     }
 

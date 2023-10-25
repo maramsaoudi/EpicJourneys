@@ -15,7 +15,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TableView fx:id="atable" layoutX="287.0" layoutY="236.0" prefHeight="302.0" prefWidth="554.0">
+      <TableView fx:id="atable" layoutX="287.0" layoutY="236.0" prefHeight="302.0" prefWidth="554.0" style="-fx-background-color: #FFFAF0;">
         <columns>
           <TableColumn fx:id="com_auteur" prefWidth="180.7999725341797" text="auteur" />
           <TableColumn fx:id="col_note" minWidth="0.0" prefWidth="155.20001220703125" text="note" />

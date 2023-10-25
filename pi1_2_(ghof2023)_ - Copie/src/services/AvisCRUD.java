@@ -125,6 +125,10 @@ private Connection cnx = MyConnection.getInstance().getCnx();
    /* public boolean modifierAvis(Avis avis) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
-}
+     
+     
+     
+    }
+
   
 

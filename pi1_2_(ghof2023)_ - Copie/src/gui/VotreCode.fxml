@@ -4,17 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VotreCodeController">
    <children>
+      <VBox prefHeight="400.0" prefWidth="602.0" style="-fx-background-color: #A9A9A9;" />
       <TextField fx:id="fentervotrecode" layoutX="206.0" layoutY="135.0" prefHeight="39.0" prefWidth="186.0" promptText="Enter votre code" />
       <Button fx:id="vconfirm" layoutX="171.0" layoutY="228.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="39.0" prefWidth="78.0" text="Confirmer">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
       
-      <Button fx:id="vannuler" layoutX="364.0" layoutY="228.0" mnemonicParsing="false" onAction="#annuler" prefHeight="39.0" prefWidth="78.0" text="annuler">
+      <Button fx:id="vannuler" layoutX="364.0" layoutY="228.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="39.0" prefWidth="78.0" text="annuler">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

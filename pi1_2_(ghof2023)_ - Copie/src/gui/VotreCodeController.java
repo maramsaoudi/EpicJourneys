@@ -77,7 +77,7 @@ public class VotreCodeController implements Initializable {
     }
 
     @FXML
-    private void annuler(ActionEvent event) {
+    private void Annuler(ActionEvent event) {
         try {
 
             Parent page1 = FXMLLoader.load(getClass().getResource("MdpOubliéUser.fxml"));

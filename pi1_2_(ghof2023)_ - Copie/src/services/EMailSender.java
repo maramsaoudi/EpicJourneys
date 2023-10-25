@@ -5,6 +5,7 @@
  */
 package services;
 
+import gui.MdpOubliéUserController;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -46,11 +47,12 @@ public class EMailSender {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("code verification");
            // message.setText("123");
-           int code = 123; // Remplacez 123 par votre code
+          /* int code = 123; // Remplacez 123 par votre code
 String codeAsString = String.valueOf(code); // Convertir l'entier en chaîne de caractères
-message.setText(codeAsString); // Utiliser la chaîne de caractères dans le corps de l'e-mail
+message.setText(codeAsString); */// Utiliser la chaîne de caractères dans le corps de l'e-mail
 
-
+// Utilisez la variable 'code' ici au lieu de la valeur codée en dur
+        message.setText(String.valueOf(MdpOubliéUserController.code));
 
 
 

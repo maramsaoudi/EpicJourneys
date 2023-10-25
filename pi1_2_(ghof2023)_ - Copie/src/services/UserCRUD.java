@@ -421,4 +421,88 @@ public void sendResetCodeByEmail(String email, String resetCode) {
             
         }catch ()
     }*/
+    
+    
+    public int getHommesCount() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE genre = 'Homme'";
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
+    public int getFemmesCount() {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM user WHERE genre = 'Femme'";
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    public int getNombreUtilisateurs() {
+    int count = 0;
+    try {
+        String query = "SELECT COUNT(*) AS count FROM user";
+        PreparedStatement preparedStatement = cnx.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            count = resultSet.getInt("count");
+        }
+        resultSet.close();
+        preparedStatement.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return count;
+}
+    
+    
+    
+    
+    
+    /********************************/
+    public List<User> rechercherTousLesUtilisateurs2(String email) {
+        List<User> utilisateurs = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM user where email = ?";
+             PreparedStatement stmt = cnx.prepareStatement(requete);
+            stmt.setString(1, email); // Set the email parameter
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User utilisateur = new User();
+                utilisateur.setId(rs.getInt("id"));
+                utilisateur.setNom(rs.getString("nom"));
+                utilisateur.setPrenom(rs.getString("prenom"));
+                utilisateur.setEmail(rs.getString("email"));
+                utilisateur.setMotDePasse(rs.getString("motDePasse"));
+                utilisateur.setNumeroTelephone(rs.getString("numeroTelephone"));
+                utilisateur.setDateNaissance(rs.getString("dateNaissance"));
+                utilisateur.setGenre(rs.getString("genre"));
+                utilisateur.setRole(UserRole.valueOf(rs.getString("role")));
+                utilisateurs.add(utilisateur);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+        return utilisateurs;
+    }
 }

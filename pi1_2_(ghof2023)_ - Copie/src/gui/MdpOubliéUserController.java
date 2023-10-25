@@ -65,10 +65,7 @@ public class MdpOubliéUserController implements Initializable {
         });
         
     }
-  /*  public class EmailConfig {
-    public static final String EMAIL = "YOUR EMAIL";
-    public static final String PASSWORD = "YOUR EMAIL PASSWORD";
-}*/
+  
 
     @FXML
     private void envoyercode(ActionEvent event) {
