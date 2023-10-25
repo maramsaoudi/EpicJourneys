@@ -3,7 +3,10 @@ package OffreSpecialEGUI;
 import OffreSpecialEvenment.OffreSpecialEvenementCrud;
 import OffreSpecialEvenment.OffreSpecialEvenment;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
@@ -31,10 +34,12 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import org.json.JSONObject;
 import pi.CarteFidelite;
 import pi.CarteFidelite.NiveauCarte;
 
@@ -48,13 +53,12 @@ public class GUIEVENMENTController implements Initializable {
 private FilteredList<OffreSpecialEvenment> filteredList;
 
     public int sd = 0;
-
+  @FXML
+    private VBox weatherContainer;
     @FXML
     private Button fxNavCarte;
     @FXML
     private Button fxNavAjouter;
-    @FXML
-    private Button fxNavModifier;
     @FXML
     private Button fxSupprimerOffreSpecial;
 @FXML
@@ -81,7 +85,7 @@ private  ObservableList<OffreSpecialEvenment> listOffres;
     @FXML
     private Label fxlabelfhdslf;
     @FXML
-    private TextField fxChercherOffre;
+    private Button fxChecckWeather;
    
     @FXML
     void navigateToAjouter(ActionEvent event) {
@@ -99,8 +103,39 @@ private  ObservableList<OffreSpecialEvenment> listOffres;
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }  
+    }   
+
     
+@FXML    
+private void displayWeatherData() {
+    if (idOffreSpecialEvenment >= 0) {
+        int idOffreSpecialEvenment = getOffreSpecialClick();
+        try {
+            OffreSpecialEvenment offre = OffreSpecialEvenementCrud.getEventById(idOffreSpecialEvenment);
+            String location = offre.getCatégorie();
+            System.err.println(location);
+            String weatherData = getWeather(location);
+            System.out.println(weatherData); 
+            FXMLLoader.load(Weather.fxml)
+
+            fxWeatherLabel.setText(weatherData);
+
+            // Show the new scene in a new window
+            Stage weatherStage = new Stage();
+            weatherStage.setTitle("Weather Information");
+            weatherStage.setScene(weatherScene);
+            weatherStage.show();
+        } catch (Exception e) {
+            System.err.println("unexpected Error: " + e.getMessage());;
+        }
+    } else {
+        fxlabelfhdslf.setText("Please select an event");
+    }
+}
+
+
+    
+        
     /*private int getCarte() {
     int idCarte = -1; 
     index = fxTableCarte.getSelectionModel().getSelectedIndex();
@@ -112,8 +147,70 @@ private  ObservableList<OffreSpecialEvenment> listOffres;
                 
     }
     return idCarte;}  
-*/
- 
+*/ 
+        public String s=""; 
+
+@FXML 
+public String getWeather(String location) 
+{  
+        try {
+            String apiUrl = "http://api.weatherapi.com/v1/current.json?key=7035064ddd13403581800106232510&q=" + location;
+
+            // Create a URL object
+            URL url = new URL(apiUrl);
+
+            // Open a connection to the URL
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Set the request method to GET
+            connection.setRequestMethod("GET");
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Create a BufferedReader to read the response
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+
+                // Read the response line by line
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                // Close the reader
+                reader.close();
+
+                // Parse the JSON response
+                JSONObject jsonResponse = new JSONObject(response.toString());
+
+                // Extract the current weather data
+                JSONObject current = jsonResponse.getJSONObject("current");
+                String location1 = jsonResponse.getJSONObject("location").getString("name");
+                String condition = current.getJSONObject("condition").getString("text");
+                double temperatureCelsius = current.getDouble("temp_c");
+                double temperatureFahrenheit = current.getDouble("temp_f");
+                
+                // Print the weather information
+                s+="Location: " + location +"\n";
+                s+="Condition: " + condition + "\n";
+                s+="Temperature (Celsius): " + temperatureCelsius + "°C" + "\n";
+                s+="Temperature (Fahrenheit): " + temperatureFahrenheit + "°F" + "\n";
+            } else {
+                System.out.println("Request failed with response code: " + responseCode);
+            }
+
+            // Close the connection
+            connection.disconnect();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return s;
+    }
+
+    
+    
 
 
 @FXML
@@ -278,6 +375,7 @@ private int getOffreSpecialClick() {
     public void initialize(URL url, ResourceBundle rb) {  
         setupEditableColumnString(fxTitreOffreSpecialE, "titre");
         setupEditableColumnString(fxCatOffreE,"catégorie");
+        setupEditableColumnString(fxDescriptionOfrreSpecialE, "description");
 
         //setupEditableColumnDate(fxDateDepartOffre); 
        //    c_date.setCellFactory(TextFieldTableCell.forTableColumn(dateConverter)); 

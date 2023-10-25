@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,7 +38,8 @@
             <TableColumn fx:id="fxNiveauE" prefWidth="63.0" text="niveau" />
         </columns>
       </TableView>
-      <Button layoutX="56.0" layoutY="198.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Home ">
+      
+      <Button fx:id="fxChecckWeather" layoutX="240.0" layoutY="83.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="111.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="checkWeather" onAction="#displayWeatherData">
          <font>
             <Font size="13.0" />
          </font>
@@ -48,8 +48,6 @@
       <Button layoutX="55.0" layoutY="337.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Evenment " />
       <Button layoutX="55.0" layoutY="412.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Produit " />
       <Button layoutX="52.0" layoutY="489.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Sign out " />
-      <TextField fx:id="fxChercherOffre" layoutX="438.0" layoutY="133.0" prefHeight="35.0" prefWidth="177.0" promptText="chercher Evenement" stylesheets="@../CarteFideliteAdmin/GUI/style.css" />
-      <ImageView fitHeight="119.0" fitWidth="159.0" layoutX="264.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="fxNavAjouter" layoutX="414.0" layoutY="83.0" mnemonicParsing="false" onAction="#navigateToAjouter" prefHeight="34.0" prefWidth="87.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Ajouter " />
       <Button fx:id="fxSupprimerOffreSpecial" layoutX="595.0" layoutY="83.0" mnemonicParsing="false" onAction="#supprimerOffreSpecialEvenment" prefHeight="34.0" prefWidth="87.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="supprimer" />
       <Label layoutX="173.0" layoutY="14.0" prefHeight="38.0" prefWidth="379.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css" text="Evenments Special">
@@ -57,7 +55,7 @@
             <Font name="Bauhaus 93" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="fxlabelfhdslf" layoutX="750.0" layoutY="71.0" prefHeight="47.0" prefWidth="227.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css">
+      <Label fx:id="fxlabelfhdslf" layoutX="755.0" layoutY="27.0" prefHeight="47.0" prefWidth="227.0" stylesheets="@../CarteFideliteAdmin/GUI/style.css">
          <font>
             <Font size="31.0" />
          </font>

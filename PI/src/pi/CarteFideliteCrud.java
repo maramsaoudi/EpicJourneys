@@ -130,23 +130,19 @@ public int parseClientID(int IdCarte) {
     
 public boolean ajouterCarteFidelite(int id) {
     try {
-        // Check if the client already has a loyalty card
         String checkQuery = "SELECT IdCarte FROM CarteFidelite WHERE id = ? LIMIT 1";
         PreparedStatement checkStmt = cnx2.prepareStatement(checkQuery);
         checkStmt.setInt(1, id);
         ResultSet rs = checkStmt.executeQuery();
 
         if (rs.next()) {
-            // Client already has a loyalty card
             System.out.println("Client already has a loyalty card");
             return false;
         } else {
-            // Client does not have a loyalty card, so add one
             String insertQuery = "INSERT INTO CarteFidelite (PtsFidelite, DateDebut, DateFin, id, NiveauCarte, EtatCarte) " +
                     "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement insertStmt = cnx2.prepareStatement(insertQuery);
 
-            // Set initial values for the loyalty card
             insertStmt.setInt(1, 0);
 
             Calendar calendar = Calendar.getInstance();
@@ -463,10 +459,25 @@ public int UpgradeCarte(int IdCarte) {
     } catch (SQLException ex) {
         System.out.println(ex.getMessage());    }
     return 0;
+} 
+
+public static int getNbrOffreSpecial(NiveauCarte niveau) {
+    Connection cnx2 = myConnection.getInstance().getCnx();
+    int rowCount = -1;
+    try {
+        String query = "SELECT COUNT(*) FROM offrespecialevenment WHERE niveau = ?";
+        PreparedStatement st = cnx2.prepareStatement(query);
+        st.setString(1, niveau.toString()); // Assuming niveau is a String value
+
+        ResultSet rs = st.executeQuery();
+        if (rs.next()) {
+            rowCount = rs.getInt(1);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(CarteFideliteCrud.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rowCount;
 }
-    
-    
-  
 
 } 
  
