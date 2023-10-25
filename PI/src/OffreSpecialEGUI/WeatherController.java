@@ -19,14 +19,13 @@ import javafx.scene.control.Label;
 public class WeatherController implements Initializable {
 
     @FXML
-    private Label fxWeatherLabel;
+     Label fxWeatherLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) { 
     }    
     
 }

@@ -112,21 +112,27 @@ private void displayWeatherData() {
         int idOffreSpecialEvenment = getOffreSpecialClick();
         try {
             OffreSpecialEvenment offre = OffreSpecialEvenementCrud.getEventById(idOffreSpecialEvenment);
-            String location = offre.getCatégorie();
+            String location = offre.getDestination();
             System.err.println(location);
             String weatherData = getWeather(location);
-            System.out.println(weatherData); 
-            FXMLLoader.load(Weather.fxml)
 
-            fxWeatherLabel.setText(weatherData);
+            // Load the Weather.fxml file and create a new scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Weather.fxml"));
+        Parent root = loader.load();
+        WeatherController dwc = loader.getController();
 
-            // Show the new scene in a new window
+
+
+           dwc. fxWeatherLabel.setText(weatherData);
+
+
+            Scene weatherScene = new Scene(root);
             Stage weatherStage = new Stage();
             weatherStage.setTitle("Weather Information");
             weatherStage.setScene(weatherScene);
             weatherStage.show();
         } catch (Exception e) {
-            System.err.println("unexpected Error: " + e.getMessage());;
+            System.err.println("Unexpected Error: " + e.getMessage());
         }
     } else {
         fxlabelfhdslf.setText("Please select an event");

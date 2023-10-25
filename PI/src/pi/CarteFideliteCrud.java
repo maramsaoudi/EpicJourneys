@@ -237,31 +237,32 @@ public CarteFidelite chercherCarte(int IdCarte) {
     
         return null ;  }    
 
-public boolean modifierCarte(CarteFidelite carte,int IdCarte) {
-        try {
-            Connection connection = cnx2;
-            String requete = "UPDATE user SET, PtsFidelite = ? , DateDebut = ? , DateFin = ?, id = ? , NiveauCarte= ? , EtatCarte = ? WHERE id= " + IdCarte ; 
-            
-            
-            PreparedStatement pst = cnx2.prepareStatement(requete);
-            
-            pst.setInt(1, carte.getPtsFidelite());
-            pst.setDate(2, (java.sql.Date) carte.getDateDebut());
-            pst.setDate(3, (java.sql.Date) carte.getDateFin());
-            pst.setInt(4, carte.getid());
-            CarteFidelite.NiveauCarte niveauString = carte.getNiveauCarte(); 
-            String Value1 = niveauString.toString(); 
-            pst.setString(5,Value1); 
-            CarteFidelite.EtatCarte etatString = carte.getEtatCarte();
-            String Value2 = etatString.toString(); 
-
-            pst.setString(6,Value2);
-            int rowsUpdated=pst.executeUpdate();
-            return rowsUpdated>0;} 
-         catch (SQLException ex) {
-            return false; 
-        }}
-
+public boolean modifierCarte(CarteFidelite carte, int IdCarte) {
+    try {
+        Connection connection = cnx2;
+        String requete = "UPDATE user SET PtsFidelite = ?, DateDebut = ?, DateFin = ?, id = ?, NiveauCarte = ?, EtatCarte = ? WHERE id = ?";
+        
+        PreparedStatement pst = connection.prepareStatement(requete);
+        
+        pst.setInt(1, carte.getPtsFidelite());
+        pst.setDate(2, new java.sql.Date(carte.getDateDebut().getTime()));  // Assuming carte.getDateDebut() returns a java.util.Date
+        pst.setDate(3, new java.sql.Date(carte.getDateFin().getTime()));    // Assuming carte.getDateFin() returns a java.util.Date
+        pst.setInt(4, carte.getid());
+        CarteFidelite.NiveauCarte niveauString = carte.getNiveauCarte();
+        String Value1 = niveauString.toString();
+        pst.setString(5, Value1);
+        CarteFidelite.EtatCarte etatString = carte.getEtatCarte();
+        String Value2 = etatString.toString();
+        pst.setString(6, Value2);
+        pst.setInt(7, IdCarte);  // Set the ID parameter
+        
+        int rowsUpdated = pst.executeUpdate();
+        return rowsUpdated > 0;
+    } catch (SQLException ex) {
+        ex.printStackTrace();  // Print the exception for debugging purposes
+        return false;
+    }
+}
 
 public int SuspendCarte(int idCarte) {
     CarteFidelite f = new CarteFidelite();
@@ -350,21 +351,20 @@ public boolean SupprimerCarte(int id) {
         }
     return list; }
     
-    public  ObservableList<CarteFidelite> listeDesEntites1() {
+    public static ObservableList<CarteFidelite> listeDesEntites1() {
     ObservableList<CarteFidelite> myList = FXCollections.observableArrayList();
 
     try {
-        // Create an SQL query to select all records from the "CarteFidelite" table.
         String requete = "SELECT * FROM CarteFidelite";
 
         // Create a database connection statement.
         Statement st = myConnection.getInstance().getCnx().createStatement();
 
         // Execute the SQL query and obtain a result set.
-        ResultSet rs = st.executeQuery(requete);
+        ResultSet rs = st.executeQuery(requete); 
 
         // Iterate through the result set and create CarteFidelite objects.
-        while (rs.next()) {
+        while (rs.next()) { 
             CarteFidelite f = new CarteFidelite();
             // Set the properties of the CarteFidelite object from the result set.
             f.setIdCarte(rs.getInt("IdCarte"));
@@ -378,8 +378,6 @@ public boolean SupprimerCarte(int id) {
             String NiveauCarteString = rs.getString(7);
             CarteFidelite.NiveauCarte NiveauCarteValue = NiveauCarte.valueOf(NiveauCarteString);
             f.setNiveauCarte(NiveauCarteValue);
-
-            // Add the CarteFidelite object to the list.
             myList.add(f);
         }
     } catch (SQLException ex) {
@@ -425,8 +423,12 @@ if (f != null && f.getEtatCarte() != CarteFidelite.EtatCarte.valueOf("active")) 
 }} 
   public float  calculate(int PtsFidelite,float price )  
   { 
+      
        return PtsFidelite/100.2f ;  
-  } 
+  }  
+  //public int UtiliserPts(int pts,
+          
+    //      )
   
   
   

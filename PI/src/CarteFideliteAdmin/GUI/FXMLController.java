@@ -100,49 +100,57 @@ private int getCarte() {
     if (index >= 0) {
         CarteFidelite selectedCarte = fxTableCarte.getItems().get(index);
         idCarte = selectedCarte.getIdCarte(); }
-        else 
-        {   fxLabel2.setText("plz select a card"); 
-                
-    }
     return idCarte;}  
 private CarteFideliteCrud carteFideliteCrud;
 
 
-
+private void loadCarte() 
+{ 
+    ObservableList<CarteFidelite> listC= FXCollections.observableArrayList(CarteFideliteCrud.listeDesEntites1());  
+    fxTableCarte.setItems(listC);
+    
+    
+}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
+        loadCarte() ;
         System.err.println(getCarte());
    /* fxSelectAll.selectedProperty().addListener(new ChangeListener<boolean>(){
      @Override 
      public void changed(ObservableValue<? extends boolean> observable, Boolean oldValue,Boolean newvalue) 
      {
          
-     }
-    });*/
-        
+     }``````````````````````````````
+    });*/ 
+         
     fxIdCarte.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Integer>("IdCarte"));
     fxPtsFidelite.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Integer>("PtsFidelite"));
     fxDateDebut.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Date>("DateDebut"));
     fxDateFin.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Date>("DateFin"));
-    fxIdClient.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Integer>("IdClient"));
+    fxIdClient.setCellValueFactory(new PropertyValueFactory<CarteFidelite,Integer>("id"));
     fxEtatCarte.setCellValueFactory(new PropertyValueFactory<CarteFidelite,EtatCarte>("EtatCarte"));
     fxNiveauCarte.setCellValueFactory(new PropertyValueFactory<CarteFidelite,NiveauCarte>("NiveauCarte"));
     listC=cnx2.listeDesEntites1(); 
     fxTableCarte.setItems(listC);  
     
-       
     
     fxSuspend.setOnAction(new EventHandler<ActionEvent>() {
     @Override
-    public void handle(ActionEvent event) {
+    public void handle(ActionEvent event) { 
+                int idCarteToSuspend = getCarte();  
+                if (idCarteToSuspend == -1 )
+                        { 
+                            fxLabel2.setText("plz select a card");
+                        }
+                else{
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Do you want to suspend this card?");
         Optional<ButtonType> result = alert.showAndWait();
         
         if (result.isPresent() && result.get() == ButtonType.OK) {
             
-            int idCarteToSuspend = getCarte(); 
             CarteFideliteCrud cnx2 = CarteFideliteCrud.getInstance(); 
             int x =cnx2.SuspendCarte(idCarteToSuspend);   
             if (x==-1) 
@@ -165,6 +173,7 @@ private CarteFideliteCrud carteFideliteCrud;
 
             }
         }
+    }
     }
     
 
@@ -209,14 +218,20 @@ fxTableCarte.setItems(sortedData);
     fxActivateCard.setOnAction(new EventHandler<ActionEvent>() {
     @Override
     public void handle(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Do you want to suspend this card?");
-        Optional<ButtonType> result = alert.showAndWait();
         
-        if (result.isPresent() && result.get() == ButtonType.OK) {
             
-            int idCarteToActivate = getCarte(); 
-            CarteFideliteCrud cnx2 = new CarteFideliteCrud(); 
+            int idCarteToActivate = getCarte();  
+            if (idCarteToActivate == -1) 
+            { 
+                fxLabel2.setText("plz select a card");
+            } 
+            else{        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Do you want to activate this card?");
+                Optional<ButtonType> result = alert.showAndWait();
+                 if (result.isPresent() && result.get() == ButtonType.OK) {
+
+            
+                {CarteFideliteCrud cnx2 = new CarteFideliteCrud(); 
             int x =cnx2.ActivateCarte(idCarteToActivate);   
             if (x==-1) 
                     { 
@@ -226,7 +241,7 @@ fxTableCarte.setItems(sortedData);
                     } 
             else if (x==-2 ) 
             { 
-            fxLabel2.setText("carte already acrivated"); 
+            fxLabel2.setText("carte already activated"); 
             fxLabel2.setTextFill(Color.RED);
 
  
@@ -236,7 +251,8 @@ fxTableCarte.setItems(sortedData);
                 fxLabel2.setText("successfully activated"); 
                 fxLabel2.setTextFill(Color.GREEN);
 
-            }
+            }} 
+            } 
         }
     }
 }); 
