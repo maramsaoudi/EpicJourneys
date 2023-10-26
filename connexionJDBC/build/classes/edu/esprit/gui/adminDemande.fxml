@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AdminDemandeController">
+   <children>
+      <ImageView fitHeight="570.0" fitWidth="574.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Downloads/380092516_6756396007815167_8738477233289408900_n.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tvDemande" layoutX="8.0" layoutY="179.0" prefHeight="315.0" prefWidth="562.0">
+        <columns>
+          <TableColumn fx:id="colIdDemande" prefWidth="32.0" text="ID demande" />
+          <TableColumn fx:id="colIdClient" prefWidth="71.0" text="ID client" />
+            <TableColumn fx:id="colDestDemande" prefWidth="148.0" text="Destinatiion" />
+            <TableColumn fx:id="colDateDemande" prefWidth="102.0" text="Date depart" />
+            <TableColumn fx:id="colTypeDemande" prefWidth="102.0" text="thème" />
+            <TableColumn fx:id="colemailD" prefWidth="104.0" text="email client" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAccpDemande" layoutX="182.0" layoutY="506.0" mnemonicParsing="false" onAction="#approveDemande" style="-fx-background-color: #3db8ff;" text="Accepter la demande" textFill="#f8f5f5" textOverrun="LEADING_WORD_ELLIPSIS">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="120.0" text="Liste des Demandes :">
+         <font>
+            <Font name="System Bold Italic" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
