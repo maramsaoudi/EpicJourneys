@@ -20,7 +20,7 @@ public class Evenement {
     private String titre;
     private String SponsorEvenement;
 
-    public Evenement(String catégorie, Date date, String description, String destination, int guide_id, int id, String image, float prix, String titre, String SponsorEvenement) {
+    public Evenement(String catégorie, Date date, String description, String destination, String durée, int guide_id, int id, String image, float prix, String titre, String SponsorEvenement) {
         this.TypeEvenement = catégorie;
         this.date_depart = date;
         this.description = description;
@@ -34,18 +34,6 @@ public class Evenement {
     }
 
     public Evenement() {
-    }
-
-    public Evenement(String TypeEvenement, Date date_depart, String description, String destination, int guide_id, String image, float prix, String titre, String SponsorEvenement) {
-        this.TypeEvenement = TypeEvenement;
-        this.date_depart = date_depart;
-        this.description = description;
-        this.destination = destination;
-        this.guide_id = guide_id;
-        this.image = image;
-        this.prix = prix;
-        this.titre = titre;
-        this.SponsorEvenement = SponsorEvenement;
     }
 
     public Evenement(String catégorie, Date date_depart, String description, String destination, String durée, int guide_id, String image, float prix, String titre, String SponsorEvenement) {

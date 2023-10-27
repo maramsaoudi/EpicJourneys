@@ -22,8 +22,8 @@ public class CarteFideliteAdmin extends Application {
            root = FXMLLoader.load(getClass().getResource("CarteFideliteAdmin.fxml"));
            Scene scene = new Scene(root);
             primaryStage.setTitle("Carte Fidelite");
-            primaryStage.setScene(scene); 
-            primaryStage.show(); 
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());  }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package OffreSpecialEGUI;
+package CarteFideliteAdmin.GUI;
 
 import OffreSpecialEvenment.OffreSpecialEvenment;
 import java.io.File;

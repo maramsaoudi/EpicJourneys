@@ -13,12 +13,20 @@ public class PI {
          
         boolean x;   
         
- 
+       /* CarteFideliteCrud mc = new CarteFideliteCrud(); 
+        CarteFideliteCrud mc2 = new CarteFideliteCrud();  
+        //System.out.println(mc.hashCode()+ "-" + mc2.hashCode()); 
+       mc.ajouterCarteFidelite(2); 
+        //mc.supprimerCarte(1); 
+      //  mc.SupprimerCarte(4);
 
+        mc.ajouterCarteFidelite(8); 
+ mc.ajouterCarteFidelite(5); 
+  mc.ajouterCarteFidelite(5); 
+ mc.ajouterCarteFidelite(5); */  
  CarteFideliteCrud cnx3 = new CarteFideliteCrud();
- 
+  cnx3.listeDesEntites1();
 
-cnx3.ajouterCarteFidelite(101); 
 
 
         

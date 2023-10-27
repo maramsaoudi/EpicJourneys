@@ -66,7 +66,7 @@ public class EvenementCrud {
     }
     
     
-   
+    
         public void modifierEvenement (Evenement e){
         try {
                    String requete2 = "UPDATE evenement SET titre=?,description=?, date_depart=?,prix=?, catégorie=?, guide_id=?, destination=?, image=? where IdEvenement=?";
@@ -108,6 +108,8 @@ public class EvenementCrud {
     
         }
 
+    
+    
     public List<Evenement> afficherEvenements () {
         
         
@@ -134,7 +136,12 @@ public class EvenementCrud {
             
             
             myList.add(e); 
-
+            //pour chaque itération : créer un evenement remplir l'objet "e" et l'ajoutere dans mylist 
+            
+            
+         
+          
+            
             }
             
             

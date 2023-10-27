@@ -1,4 +1,4 @@
-package OffreSpecialEGUI;
+package CarteFideliteAdmin.GUI;
 
 import OffreSpecialEvenment.OffreSpecialEvenementCrud;
 import OffreSpecialEvenment.OffreSpecialEvenment;

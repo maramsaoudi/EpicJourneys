@@ -30,11 +30,11 @@ public class myConnection {
      return cnx; 
  }
 public static myConnection getInstance(){ 
-    System.out.println(instance == null);
     if (instance == null) { 
         instance = new myConnection(); 
     } 
-    return instance;   
+    return instance; 
+    
 }    
  
 

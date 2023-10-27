@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package OffreSpecialEGUI;
+package CarteFideliteUser.GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author desig
  */
-public class WeatherController implements Initializable {
+public class CarteFideliteUserController implements Initializable {
 
     @FXML
-     Label fxWeatherLabel;
-
-    /**
-     * Initializes the controller class.
-     */
+    private TextField fxPointsFidelite;
+    @FXML
+    private TextField fxDateFin;
+    @FXML
+    private TextField fxNiveauCarte;
     @Override
-    public void initialize(URL url, ResourceBundle rb) { 
+    public void initialize(URL url, ResourceBundle rb) {  
+        
+        
+        
     }    
     
 }
