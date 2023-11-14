@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="658.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TableViewController">
+   <children>
+      <TableView fx:id="ttable" layoutX="58.0" layoutY="329.0" prefHeight="312.0" prefWidth="879.0">
+        <columns>
+          <TableColumn fx:id="col_nom" prefWidth="90.0" text="nom" />
+          <TableColumn fx:id="col_prenom" prefWidth="90.0" text="prenom" />
+            <TableColumn fx:id="col_email" prefWidth="150.0" text="email" />
+            <TableColumn fx:id="col_mdp" prefWidth="100.0" text="mot de passe" />
+            <TableColumn fx:id="col_phone" prefWidth="150.0" text="numero telephone" />
+            <TableColumn fx:id="col_date" prefWidth="150.0" text="date de naissance" />
+            <TableColumn fx:id="col_genre" prefWidth="75.0" text="genre" />
+            <TableColumn fx:id="col_role" prefWidth="75.0" text="role" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="53.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/Design%20sans%20titre%20(2).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="tbtnmodifier" layoutX="176.0" layoutY="278.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" text="modifier" textFill="#44a8e1">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="tbtnsupprimer" layoutX="291.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleSupprimerButtonAction" text="supprimer" textFill="#3db8ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tnom" layoutX="139.0" layoutY="64.0" promptText="nom" />
+      <TextField fx:id="tprenom" layoutX="140.0" layoutY="118.0" promptText="prenom" />
+      <TextField fx:id="temail" layoutX="141.0" layoutY="175.0" promptText="email" />
+      <TextField fx:id="tmotdepasse" layoutX="423.0" layoutY="64.0" promptText="mot de passe" />
+      <TextField fx:id="tnumerodetelephone" layoutX="424.0" layoutY="118.0" promptText="numero de telephone" />
+      <DatePicker fx:id="tdatedenaissance" layoutX="421.0" layoutY="175.0" prefHeight="26.0" prefWidth="166.0" promptText="date de naissance" />
+      <ComboBox fx:id="tgenre" layoutX="676.0" layoutY="64.0" prefWidth="150.0" promptText="genre" />
+      <RadioButton fx:id="tclient" layoutX="708.0" layoutY="135.0" mnemonicParsing="false" text="client" />
+      <RadioButton fx:id="tguide" layoutX="709.0" layoutY="179.0" mnemonicParsing="false" text="guide" />
+      <Label layoutX="636.0" layoutY="153.0" text="role" />
+      <Button fx:id="tbtnajouter" layoutX="60.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleAjouterButtonAction" prefHeight="26.0" prefWidth="68.0" text="ajouter" textFill="#2fbadc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="594.0" layoutY="278.0" mnemonicParsing="false" onAction="#AfficherClients" text="Afficher Clients" textFill="#3db8ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="853.0" layoutY="278.0" mnemonicParsing="false" onAction="#resetFilter" text="Réinitialiser filtre" textFill="#3db8ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="722.0" layoutY="278.0" mnemonicParsing="false" onAction="#AfficherGuides" text="Afficher Guides" textFill="#3db8ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="910.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+      <Button fx:id="excel" layoutX="406.0" layoutY="278.0" mnemonicParsing="false" onAction="#btnexcel" prefHeight="26.0" prefWidth="54.0" text="excel" textFill="#3db8ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="pdf" layoutX="506.0" layoutY="278.0" mnemonicParsing="false" onAction="#exportpdf" text="Pdf" />
+   </children>
+</AnchorPane>
