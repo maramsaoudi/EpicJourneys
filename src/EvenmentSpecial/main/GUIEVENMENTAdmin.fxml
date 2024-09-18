@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="1018.0"
+   xmlns="http://javafx.com/javafx/8.0.171"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="EvenmentSpecial.main.GUIEVENMENTController">
+   <children>
+      <Label layoutX="24.0" layoutY="117.0" prefHeight="72.0" prefWidth="119.0" text="Welcome ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TableView fx:id="fxTableOffreSpecial" layoutX="185.0" layoutY="165.0" onMouseClicked="#getOffreSpecialClick" prefHeight="436.0" prefWidth="784.0">
+         <columns>
+            <TableColumn fx:id="fxTitreOffreSpecialE" prefWidth="65.0" text="titre" />
+            <TableColumn fx:id="fxDescriptionOfrreSpecialE" prefWidth="151.0" text="description" />
+            <TableColumn fx:id="fxDateDepartOffre" prefWidth="75.0" text="date_depart" />
+            <TableColumn fx:id="fxPrix" prefWidth="43.0" text="prix" />
+            <TableColumn fx:id="fxCatOffreE" prefWidth="70.0" text="catégorie" />
+            <TableColumn fx:id="fxGuideIdE" prefWidth="58.0" text="guide_id" />
+            <TableColumn fx:id="fxDestinationOffreE" prefWidth="88.0" text="destination" />
+            <TableColumn fx:id="fxImageOffreE" prefWidth="169.0" text="image" />
+            <TableColumn fx:id="fxNiveauE" prefWidth="63.0" text="niveau" />
+         </columns>
+      </TableView>
+
+      <Button fx:id="fxChecckWeather" layoutX="273.0" layoutY="100.0" mnemonicParsing="false" onAction="#displayWeatherData" prefHeight="34.0" prefWidth="111.0" text = "check weather">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="fxNavCarte" layoutX="30.0" layoutY="241.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" text="carte fidelité" onAction="#NavToCarte" />
+      <Button fx:id="fxNavAjouter" layoutX="543.0" layoutY="100.0" mnemonicParsing="false" onAction="#navigateToAjouter" prefHeight="34.0" prefWidth="87.0" text="Ajouter " />
+      <Button fx:id="fxSupprimerOffreSpecial" layoutX="820.0" layoutY="100.0" mnemonicParsing="false" onAction="#supprimerOffreSpecialEvenment" prefHeight="34.0" prefWidth="87.0" text="supprimer" />
+      <Label layoutX="83.0" layoutY="14.0" prefHeight="38.0" prefWidth="379.0" text="Evenments Special">
+         <font>
+            <Font name="Bauhaus 93" size="40.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
