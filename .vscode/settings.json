@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\desig\\OneDrive\\Desktop\\memes\\json-20240303.jar",
+        "c:\\Users\\desig\\OneDrive\\Desktop\\memes\\mail-1.4.7.jar",
+        "c:\\Users\\desig\\OneDrive\\Desktop\\memes\\mysql-connector-java-8.0.24.jar"
+    ]
+}

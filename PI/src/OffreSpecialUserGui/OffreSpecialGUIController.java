@@ -1,73 +1,79 @@
 package OffreSpecialUserGui;
 
 import java.util.List;
-import OffreSpecialEvenment.OffreSpecialEvenment;
-import OffreSpecialEvenment.OffreSpecialEvenementCrud;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
+
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.cell.TextFieldListCell;
+
+import CRUD.OffreSpecialEvenementCrud;
+import Entities.OffreSpecialEvenment;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import javafx.util.StringConverter;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class OffreSpecialGUIController implements Initializable { 
-    
-    
+public class OffreSpecialGUIController implements Initializable {
+    @FXML
+    private VBox eventContainer;
+
+    private OffreSpecialEvenementCrud offreSpecialEvenementCrud = new OffreSpecialEvenementCrud();
+
+    private void displayEvents(List<OffreSpecialEvenment> events) {
+        for (OffreSpecialEvenment event : events) {
+            HBox eventBox = new HBox();
+            eventBox.setSpacing(10);
+
+            ImageView eventImage = new ImageView();
+            File file = new File(event.getImage());
+            Image image = new Image(file.toURI().toString());
+            eventImage.setImage(image);
+            eventImage.setFitWidth(100);
+            eventImage.setPreserveRatio(true);
+
+            Label titleLabel = new Label(event.getTitre());
+            Label dateLabel = new Label("Date: " + event.getDate_depart());
+            Label descriptionLabel = new Label("Description: " + event.getDescription());
+
+            eventBox.getChildren().addAll(eventImage, titleLabel, dateLabel, descriptionLabel);
+
+            eventContainer.getChildren().add(eventBox);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        List<OffreSpecialEvenment> offreSpecialEvenments = offreSpecialEvenementCrud.afficherEvenements();
+        displayEvents(offreSpecialEvenments);
+
+    }
 
     @FXML
-    private ListView<OffreSpecialEvenment> ListViewOffre; 
-    
+    void NavToLoyalty(ActionEvent event) {
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("../CarteFideliteUser/GUI/UICarte.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
-    
- 
-@Override
-public void initialize(URL url, ResourceBundle rb) {
-    OffreSpecialEvenementCrud cnx2 = new OffreSpecialEvenementCrud();
-    List<OffreSpecialEvenment> offreList = cnx2.afficherOffreSpecial();
-    ObservableList<OffreSpecialEvenment> observableList = FXCollections.observableArrayList(offreList);
-    
-    ListViewOffre.setItems(observableList);
-
-    ListViewOffre.setCellFactory(param -> new ListCell<OffreSpecialEvenment>() { 
-            private final Text text = new Text();
-
-        @Override
-        protected void updateItem(OffreSpecialEvenment item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty || item == null) {
-                setGraphic(null);
-            } else {
-                try {
-                    ImageView imageView = new ImageView(new Image(item.getImage())); // Load the image from the URL
-                    imageView.setFitHeight(120); // Adjust the size of the image view
-                    imageView.setPreserveRatio(true); 
-                    
-                    setGraphic(imageView); 
-                     text.setText("Item: " + item.toString());
-
-                } catch (Exception e) {
-    System.err.println("Error loading image: " + e.getMessage());
-
-    ImageView imageView = new ImageView(new Image("file:///C:/Users/desig/OneDrive/Desktop/memes/default.jpg")); // Load the image from a local file
-
-    imageView.setFitHeight(120); // Adjust the size of the image view
-    imageView.setPreserveRatio(true); 
-    text.setStyle("-fx-padding: 10 10 10 10;");
-    setGraphic(imageView);
-
-                }
-            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
-    });
-}
-}
+    }
 
+}

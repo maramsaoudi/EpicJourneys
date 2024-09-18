@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="773.0"
+   xmlns="http://javafx.com/javafx/8.0.171"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="CarteFideliteAdmin.GUI.ajouterCarte.AjouterCarteController">
+   <children>
+      <Label layoutX="53.0" layoutY="121.0" prefHeight="25.0" prefWidth="53.0" text="User">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="190.0" prefHeight="35.0" prefWidth="134.0" text="Date Debut">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="260.0" prefHeight="35.0" prefWidth="134.0" text="Date Fin">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="415.0" layoutY="260.0" prefHeight="35.0" prefWidth="149.0" text="Points Fidelite">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="fxDateDebutInput" layoutX="205.0" layoutY="195.0" prefHeight="25.0" prefWidth="134.0" />
+      <DatePicker fx:id="fxDateFinInput" layoutX="204.0" layoutY="265.0" prefHeight="25.0" prefWidth="134.0" />
+      <ChoiceBox fx:id="fxUserInput" layoutX="204.0" layoutY="126.0" prefHeight="25.0" prefWidth="134.0" />
+      <Label layoutX="40.0" layoutY="39.0" prefHeight="44.0" prefWidth="418.0" text="Ajouter Carte Fidelite">
+         <font>
+            <Font name="Bauhaus 93" size="41.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fxPtsFideliteInput" layoutX="578.0" layoutY="263.0" prefHeight="25.0" prefWidth="122.0" />
+      <Button id="fxAddCarte" layoutX="639.0" layoutY="469.0" mnemonicParsing="false" onAction="#addCarte" prefHeight="35.0" prefWidth="73.0" style="-fx-background-color: green; -fx-text-fill: white;" text="ajouter" />
+      <Button id="fxCancel" layoutX="43.0" layoutY="469.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="35.0" prefWidth="73.0" style="-fx-border-color: red; -fx-background-color: transparent;" text="Cancel" />
+      <Label layoutX="427.0" layoutY="190.0" prefHeight="35.0" prefWidth="159.0" text="Etat Carte">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="etatCarteInput" layoutX="578.0" layoutY="195.0" prefHeight="25.0" prefWidth="122.0" value="active">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <java.lang.String fx:value="active" />
+               <java.lang.String fx:value="suspended" />
+               <java.lang.String fx:value="inactive" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label layoutX="410.0" layoutY="121.0" prefHeight="35.0" prefWidth="159.0" text="Niveau Carte">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="NiveauCarteInput" layoutX="578.0" layoutY="126.0" prefHeight="25.0" prefWidth="122.0" value="bronze">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <java.lang.String fx:value="bronze" />
+               <java.lang.String fx:value="silver" />
+               <java.lang.String fx:value="gold" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+   </children>
+</AnchorPane>
