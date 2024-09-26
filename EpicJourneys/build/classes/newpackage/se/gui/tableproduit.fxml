@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.2" fx:controller="newpackage.se.gui.TableproduitController">
+    <children>
+        <TableView fx:id="tableView" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="580.0">
+            <columns>
+                <TableColumn fx:id="nomCol" text="Nom">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nom" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="prixCol" text="Prix">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="prixUnitaire" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="stockCol" text="Stock">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="stock" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="imageCol" text="Image">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="image" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

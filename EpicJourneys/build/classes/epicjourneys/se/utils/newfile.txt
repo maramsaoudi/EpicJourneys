@@ -1,0 +1,8 @@
+---------Table sql-------------
+CREATE TABLE Produit(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prixUnitaire DECIMAL(10, 2) NOT NULL,
+    stock INT NOT NULL,
+    image LONGTEXT
+);
